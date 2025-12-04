@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodtruck</title>
+
+    <link rel="stylesheet" href="./assets/CSS/main.css">
+
+    <script type="module" src="./src/main.js"></script>
+</head>
+
+<body>
+    <div class="test-button-delete-me">TESTING OVERLAYS</div>
+    <section id="menu">
+        <div class="cart"></div>
+        <h1> Meny</h1>
+
+        <div id="mainMenu">
+            <!-- create div elements here that will look like:-->
+            <!-- <div class="food-boxes">
+                <div class="menu-title-style">
+                    <h2>class not needed..?</h2>
+                    <p class="spacer"></p>
+                    <h2 class="food-price"></h2>
+                </div>
+                <p class="ingredients"></p>
+            </div> -->
+        </div>
+
+        <div id="sauceMenu">
+            <div class="menu-title-style">
+                <h2 class="sauce-title"></h2>
+                <p class="spacer"></p>
+                <!-- could add the sauce name to the spacer -->
+                <h2 class="sauce-price"></h2>
+            </div>
+            <div id="sauceBoxes"></div>
+        </div>
+
+        <div id="drinkMenu">
+            <div class="menu-title-style">
+                <h2 class="drink-title"></h2>
+                <p class="spacer"></p>
+                <!-- could add the sauce name to the spacer -->
+                <h2 class="drink-price"></h2>
+            </div>
+            <div id="drink-boxes"></div>
+        </div>
+    </section>
+
+    <section id="cart">
+        <div class="cart"></div>
+        <h1> Beställning </h1>
+
+        <div id="cartContains">
+            <!-- create div elements here that will look like:-->
+            <!-- TODO: EXTRA: could add a remove item from list button -->
+            <!-- <div class="cart-boxes">
+                <div class="cart-title-style">
+                    <h2>class not needed..?</h2>
+                    <p class="spacer"></p>
+                    <h2 class="food-price"></h2>
+                </div>
+                <div class="amount-of-type">
+                    <button class="less-of-type"></button>
+                    <p> 0 stycken </p>
+                    <button class="more-of-type"></button>
+                </div>
+            </div> -->
+        </div>
+
+        <div class="total-display total-display-big">
+            <div class="total-left-big">
+                <h2>TOTALT</h2>
+                <p>inkl 20% moms</p>
+            </div>
+            <p class="cost">0 SEK</p>
+        </div>
+
+        <button id="takeMoney" class="bottom-button">TAKE MY MONEY!</button>
+    </section>
+
+    <section id="waiting">
+        <div class="img-box-big">
+            <img src="" alt="">
+        </div>
+        
+        <div class="progress">
+            <h1>DINA WONTONS TILLAGAS!</h1>
+            <h2>ETA</h2>
+            <p>beställningsnummer?</p>
+        </div>
+
+        <button class="open-receipt"></button>
+
+        <button class="new-order bottom-button">GÖR EN NY BESTÄLLNING</button>
+    </section>
+
+    <section id="receipt">
+        <div class="receipt-big">
+            <div class="receipt-header">
+                <img src="" alt="">
+                <h2>KVITTO</h2>
+                <p>beställningsnummer?</p>
+            </div>
+
+            <div class="receipt-boxes">
+                <!-- <div class="receipt-title-style">
+                    <h2>class not needed..?</h2>
+                    <p class="spacer"></p>
+                    <h2 class="food-price"></h2>
+                </div>
+
+                <div class="amount-of-type">
+                    <p> 0 stycken </p>
+                </div> -->
+
+                <div class="total-display total-display-small">
+                    <div class="total-left-small">
+                        <h2>TOTALT</h2>
+                        <p>inkl 20% moms</p>
+                    </div>
+                    <p class="cost">0 SEK</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="new-order bottom-button">GÖR EN NY BESTÄLLNING</button>
+    </section>
+</body>
+
+</html>
