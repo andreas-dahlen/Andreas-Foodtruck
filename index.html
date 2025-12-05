@@ -7,14 +7,18 @@
     <title>Foodtruck</title>
 
     <link rel="stylesheet" href="./assets/CSS/main.css">
+    <link rel="stylesheet" href="./assets/CSS/menu.css">
 
     <script type="module" src="./src/main.js"></script>
 </head>
 
 <body>
-    <div class="test-button-delete-me">TESTING OVERLAYS</div>
-    <section id="menu">
-        <div class="cart"></div>
+    <section id="menu" class="menu-style">
+        <img class="test-button-delete-me" src="./assets/images/menu-example.png" alt="DELETE ME!">
+        <div class="cart">
+            <img src="./assets/images/cart.svg" alt="cart icon">
+            <div class="amount-in-cart">0</div>
+        </div>
         <h1> Meny</h1>
 
         <div id="mainMenu">
@@ -50,8 +54,11 @@
         </div>
     </section>
 
-    <section id="cart">
-        <div class="cart"></div>
+    <section id="cart" class="cart-style">
+        <img class="test-button-delete-me" src="./assets/images/cart-example.png" alt="DELETE ME!">
+        <div class="cart">
+            <img src="./assets/images/cart.svg" alt="cart icon">
+        </div>
         <h1> Beställning </h1>
 
         <div id="cartContains">
@@ -82,11 +89,12 @@
         <button id="takeMoney" class="bottom-button">TAKE MY MONEY!</button>
     </section>
 
-    <section id="waiting">
+    <section id="waiting" class="waiting-style">
+        <img class="test-button-delete-me" src="./assets/images/waiting-example.png" alt="DELETE ME!">
         <div class="img-box-big">
-            <img src="" alt="">
+            <img src="./assets/images/boxtop.png" alt="big wonton image">
         </div>
-        
+
         <div class="progress">
             <h1>DINA WONTONS TILLAGAS!</h1>
             <h2>ETA</h2>
@@ -98,10 +106,11 @@
         <button class="new-order bottom-button">GÖR EN NY BESTÄLLNING</button>
     </section>
 
-    <section id="receipt">
+    <section id="receipt" class="receipt-style">
+        <img class="test-button-delete-me" src="./assets/images/receipt-example.png" alt="DELETE ME!">
         <div class="receipt-big">
             <div class="receipt-header">
-                <img src="" alt="">
+                <img src="./assets/images/logo.png" alt="">
                 <h2>KVITTO</h2>
                 <p>beställningsnummer?</p>
             </div>

@@ -1,4 +1,5 @@
 const sections = {
+    menu: document.querySelector('#menu'),
     cart: document.querySelector('#cart'),
     waiting: document.querySelector('#waiting'),
     receipt: document.querySelector('#receipt')
@@ -17,4 +18,4 @@ function showSection(input) {
     sections[input].classList.remove('display-remove')
 }
 
-export { showSection, hideAllSections}
+export { showSection }
