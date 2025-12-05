@@ -1,3 +1,65 @@
+:root {
+    /* main menu: */
+    --green-menu: #489078;
+    --light-gray-menu:#837C7C;
+/* cart: */
+    --white-ish-cart: #EEEEEE;
+/* waiting:  */
+    --see-receipt-waiting: #CFCDCA;
+/* all */
+    --dark-gray: #353131;
+    --gray-background: #605858;
+    --light-gray: #C2C1C1;
+    --text-color: #EBEAE7; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .display-remove {
     display: none;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+section {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: rgba(107,107,107,0.3);
+}
+
+.menu-style {
+    background-color: var(--green-menu);
+}
+
+.cart-style {
+    background-color: var(--white-ish-cart);
+}
+
+.waiting-style {
+    background-color: var(--gray-background);
+}
+
+.receipt-style {
+    background-color: var(--gray-background);
+}
+
+.test-button-delete-me {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    max-width: 390px;
+    height: auto;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0.2;
 }
