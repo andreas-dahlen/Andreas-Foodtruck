@@ -9,7 +9,7 @@ async function getApiKey() {
         });
         const data = await response.json()
         cart.key = data.key
-        
+
     } catch (error) {
         console.error('no key found', error.message)
     }
@@ -53,9 +53,25 @@ async function getApiMenuItems() {
 }
 
 function menuSort(data) {
-    cart.wontons = data.filter(item => item.type === "wonton")
-    cart.drinks = data.filter(item => item.type === "drink")
-    cart.dips = data.filter(item => item.type === "dip")
+    cart.wontons = data.filter(item => item.type === "wonton");
+
+    const dipOrder = [6, 9, 7, 10, 11, 8];
+    cart.dips = data
+        .filter(item => item.type === "dip")
+        .sort((a, b) => {
+            const aIndex = dipOrder.indexOf(a.id);
+            const bIndex = dipOrder.indexOf(b.id);
+            return (aIndex === -1 ? Infinity : aIndex) - (bIndex === -1 ? Infinity : bIndex);
+        });
+
+    const drinkOrder = [13, 14, 15, 12, 17, 16];
+    cart.drinks = data
+        .filter(item => item.type === "drink")
+        .sort((a, b) => {
+            const aIndex = drinkOrder.indexOf(a.id);
+            const bIndex = drinkOrder.indexOf(b.id);
+            return (aIndex === -1 ? Infinity : aIndex) - (bIndex === -1 ? Infinity : bIndex);
+        });
 }
 
 async function initApi() {
@@ -63,6 +79,7 @@ async function initApi() {
         await getApiKey();
         await getApiMenuItems()
         await getApiTenant();
+        console.log('MY-CART,', cart)
 
     } catch (error) {
         console.error('API initialization failed', error.message)

@@ -11,7 +11,6 @@ import { cart } from '../saveFile.js'
                 // </div> -->
 
 function makeWonton(item) {
-
     const foodBox = document.createElement('div')
     foodBox.classList.add('food-boxes')
 
@@ -36,14 +35,21 @@ function makeWonton(item) {
     document.querySelector('#menuDom').appendChild(foodBox)
 }
 
-function makeDipAndDrink() {
+function makeDipAndDrink(item, target) {
+    const box = document.createElement('div')
+    const p = document.createElement('p')
+    p.innerText = item.name
 
+    box.appendChild(p)
+    document.querySelector(target).appendChild(box)
 }
 
 function domMenu() {
-        cart.wontons.forEach(makeWonton)
+    cart.wontons.forEach(makeWonton)
 
-        cart.drinks.forEach(makeDipAndDrink)
+    cart.dips.forEach(item => makeDipAndDrink(item, '#sauceDom'))
+
+    cart.drinks.forEach(item => makeDipAndDrink(item, '#drinkDom'))
 }
 
 export { domMenu }
