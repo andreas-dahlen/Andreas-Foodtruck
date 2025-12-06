@@ -1,6 +1,7 @@
 import { showSection } from "./displayLogic.js";
 import { addItemToCart } from "./saveAndApi/saveAndAppend.js";
 import { sendOrder } from "./saveAndApi/orderAndRecipt.js";
+import { domCart } from "./domCart.js";
 
 function testButton() {
     let pos = 0;
@@ -28,12 +29,12 @@ function testButton() {
     })
 }
 
-function menuItemButtons() {
-    document.addEventListener('click', (e) => {
-        const el = e.target.closest('[data-id]')
-        if (!el) return
-
-        addItemToCart(Number(el.dataset.id))
+function showMenuButtons() {
+    const buttons = document.querySelectorAll('.to-menu')
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            showSection('menu')
+        })
     })
 }
 
@@ -46,6 +47,19 @@ function showCartButtons() {
     })
 }
 
+function menuItemButtons() {
+    document.addEventListener('click', (e) => {
+        const el = e.target.closest('[data-id]')
+        if (!el) return
+
+        const itemId = Number(el.dataset.id)
+
+        addItemToCart(itemId)
+        domCart(itemId)
+
+    })
+}
+
 function orderButton() {
     const button = document.querySelector('#takeMoney')
     button.addEventListener('click', () => {
@@ -53,9 +67,11 @@ function orderButton() {
     })
 }
 
+
 export {
     testButton,
     menuItemButtons,
     showCartButtons,
-    orderButton
+    orderButton,
+    showMenuButtons
 }

@@ -36,6 +36,7 @@ function addItemToCart(itemId) {
     } else {
         cart.orderList.push({
             id: item.id,
+            type: item.type,
             name: item.name,
             price: item.price,
             quantity: 1

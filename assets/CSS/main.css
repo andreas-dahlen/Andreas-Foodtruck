@@ -47,6 +47,7 @@ section {
 
 .cart-style {
     background-color: var(--white-ish-cart);
+    padding-bottom: 6em;
 }
 
 .waiting-style {
@@ -67,5 +68,5 @@ section {
     cursor: default;
     z-index: 10;
     opacity: 0.5;
-    display: none;
+    /* display: none; */
 }
