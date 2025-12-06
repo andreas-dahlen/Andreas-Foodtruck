@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap');
+
 :root {
     /* main menu: */
     --green-menu: #489078;
@@ -11,12 +13,14 @@
     --gray-background: #605858;
     --light-gray: #C2C1C1;
     --text-color: #EBEAE7; 
+    --main-font: 'Source Sans Pro', sans-serif;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--main-font)
 }
 
 .display-remove {
@@ -31,13 +35,14 @@ html, body {
 
 section {
     position: relative;
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
-    background-color: rgba(107,107,107,0.3);
 }
 
 .menu-style {
     background-color: var(--green-menu);
+    color: var(--text-color);
+    padding-bottom: 6em;
 }
 
 .cart-style {
@@ -56,10 +61,11 @@ section {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     max-width: 390px;
     height: auto;
-    cursor: pointer;
+    cursor: default;
     z-index: 10;
-    opacity: 0.3;
+    opacity: 0.5;
+    display: none;
 }

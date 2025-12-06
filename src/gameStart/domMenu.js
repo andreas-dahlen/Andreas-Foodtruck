@@ -13,18 +13,21 @@ import { cart } from '../saveFile.js'
 function makeWonton(item) {
     const foodBox = document.createElement('div')
     foodBox.classList.add('food-boxes')
+    foodBox.id = `item-${item.id}`
 
     const title = document.createElement('div')
     title.classList.add('menu-title-style')
 
     const name = document.createElement('h2')
-    name.textContent = item.name
-    const spacer = document.createElement('p')
-    spacer.textContent = '...........'
-    const price = document.createElement('h2')
-    price.textContent = item.price
+    name.textContent = item.name.toUpperCase()
 
-    title.append(name, spacer, price)
+    const span = document.createElement('span')
+    span.classList.add('dots')
+
+    const price = document.createElement('h2')
+    price.textContent = item.price + ' SEK'
+
+    title.append(name, span, price)
 
     const ingredients = document.createElement('p')
     ingredients.classList.add('ingredients')
@@ -32,13 +35,14 @@ function makeWonton(item) {
 
     foodBox.append(title, ingredients)
 
-    document.querySelector('#menuDom').appendChild(foodBox)
+    document.querySelector('.menu-dom').appendChild(foodBox)
 }
 
 function makeDipAndDrink(item, target) {
     const box = document.createElement('div')
+    box.id = `item-${item.id}`
     const p = document.createElement('p')
-    p.innerText = item.name
+    p.textContent = item.name === "Wonton Standard" ? "Wonton std" : item.name;
 
     box.appendChild(p)
     document.querySelector(target).appendChild(box)
@@ -47,9 +51,9 @@ function makeDipAndDrink(item, target) {
 function domMenu() {
     cart.wontons.forEach(makeWonton)
 
-    cart.dips.forEach(item => makeDipAndDrink(item, '#sauceDom'))
+    cart.dips.forEach(item => makeDipAndDrink(item, '.sauce-dom'))
 
-    cart.drinks.forEach(item => makeDipAndDrink(item, '#drinkDom'))
+    cart.drinks.forEach(item => makeDipAndDrink(item, '.drink-dom'))
 }
 
 export { domMenu }
