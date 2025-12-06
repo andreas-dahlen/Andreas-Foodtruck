@@ -1,5 +1,5 @@
 import { testButton } from "./buttons.js";
-import { initLoad } from "./gameStart/load.js";
+import { initLoad } from "./appStart/load.js";
 
 testButton()
 initLoad()
