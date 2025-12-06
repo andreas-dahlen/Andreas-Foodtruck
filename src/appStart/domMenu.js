@@ -1,19 +1,9 @@
-import { cart } from '../saveFile.js'
+import { cart } from '../saveAndApi/saveAndAppend.js'
             
-                // <!-- create div elements here that will look like:-->
-                // <!-- <div class="food-boxes">
-                //     <div class="menu-title-style">
-                //         <h2>class not needed..?</h2>
-                //         <p class="spacer"></p>
-                //         <h2 class="food-price"></h2>
-                //     </div>
-                //     <p class="ingredients"></p>
-                // </div> -->
-
 function makeWonton(item) {
     const foodBox = document.createElement('div')
     foodBox.classList.add('food-boxes')
-    foodBox.id = `item-${item.id}`
+    foodBox.dataset.id = item.id
 
     const title = document.createElement('div')
     title.classList.add('menu-title-style')
@@ -40,7 +30,7 @@ function makeWonton(item) {
 
 function makeDipAndDrink(item, target) {
     const box = document.createElement('div')
-    box.id = `item-${item.id}`
+    box.dataset.id = item.id
     const p = document.createElement('p')
     p.textContent = item.name === "Wonton Standard" ? "Wonton std" : item.name;
 
@@ -49,11 +39,14 @@ function makeDipAndDrink(item, target) {
 }
 
 function domMenu() {
-    cart.wontons.forEach(makeWonton)
 
-    cart.dips.forEach(item => makeDipAndDrink(item, '.sauce-dom'))
+    if (!cart.menuItems) return
 
-    cart.drinks.forEach(item => makeDipAndDrink(item, '.drink-dom'))
+    cart.menuItems.wontons.forEach(makeWonton)
+
+    cart.menuItems.dips.forEach(item => makeDipAndDrink(item, '.sauce-dom'))
+
+    cart.menuItems.drinks.forEach(item => makeDipAndDrink(item, '.drink-dom'))
 }
 
 export { domMenu }

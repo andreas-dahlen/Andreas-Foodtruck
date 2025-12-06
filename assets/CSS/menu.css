@@ -8,11 +8,13 @@
 }
 
 .cart img {
-    background-color: white;
+    background-color: var(--white-ish-cart);
     border-radius: 5px;
     padding: 16px;
     right: 22px;
     top: 19px;
+}
+.to-cart img {
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
     &:hover {
