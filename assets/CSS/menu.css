@@ -14,6 +14,11 @@
     right: 22px;
     top: 19px;
     cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px black;
+    }
 }
 
 .amount-in-cart {
