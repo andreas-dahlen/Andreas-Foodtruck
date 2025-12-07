@@ -30,13 +30,11 @@ function makeWonton(item) {
 }
 
 function makeDipAndDrink(item, target) {
-    const box = document.createElement('div')
-    box.dataset.id = item.id
-    const p = document.createElement('p')
-    p.textContent = item.name;
+    const button = document.createElement('button')
+    button.dataset.id = item.id
+    button.textContent = item.name;
 
-    box.appendChild(p)
-    document.querySelector(target).appendChild(box)
+    document.querySelector(target).appendChild(button)
 }
 
 function domMenu() {
