@@ -38,6 +38,9 @@ function domCart(itemId) {
 
     title.append(name, span, price)
 
+    const moreOrLessOrRemove = document.createElement('div')
+    moreOrLessOrRemove.classList.add('more-less-remove')
+
     const moreOrLess = document.createElement('div')
     moreOrLess.classList.add('more-or-less')
 
@@ -56,7 +59,15 @@ function domCart(itemId) {
     less.dataset.id = item.id
 
     moreOrLess.append(more, p, less)
-    cartBox.append(title, moreOrLess)
+
+    const removeCartButton = document.createElement('button')
+    removeCartButton.classList.add('remove-cart-button')
+    removeCartButton.dataset.id = item.id
+    removeCartButton.textContent = 'X'
+
+    moreOrLessOrRemove.append(moreOrLess, removeCartButton)
+    
+    cartBox.append(title, moreOrLessOrRemove)
 
     container.appendChild(cartBox)
 }
@@ -76,6 +87,14 @@ function removeDomCart(itemId) {
     quantity.textContent = `${item.quantity} Stycken`
 }
 
+function removeWholeDomCart(itemId) {
+    const item = cart.orderList.find(i => i.id === itemId)
+
+    const placement = document.querySelector(`.cart-boxes[data-id="${itemId}"]`)
+    if (!placement) return
+    placement.remove()
+}
+
 function domPrice() {
     const costElement = document.querySelectorAll('.cost')
     costElement.forEach(element => {
@@ -83,4 +102,4 @@ function domPrice() {
     })
 }
 
-export { domCart, domPrice, removeDomCart }
+export { domCart, domPrice, removeDomCart, removeWholeDomCart }

@@ -14,9 +14,11 @@
     right: 22px;
     top: 19px;
 }
+
 .to-cart img {
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
+
     &:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 15px black;
@@ -66,15 +68,23 @@ h1 {
     background-color: var(--gray-background);
     cursor: pointer;
     margin-bottom: 1px;
-    transition: background 0.3s;
+    transition:
+        background-color 0.3s ease,
+        box-shadow 0.1s ease,
+        trasform 0.2s ease;
 
     &>p {
         padding: 3px 0 22px 14px;
     }
-}
 
-.food-boxes:hover {
-    background-color: var(--dark-gray);
+    &:hover {
+        background-color: var(--dark-gray);
+    }
+
+    &:active {
+        box-shadow: 0 0 8px var(--animation-green);
+        transform: scale(1.03);
+    }
 }
 
 .menu-title-style {
@@ -97,7 +107,8 @@ h1 {
     transform: translateY(20px);
 }
 
-.sauce-menu, .drink-menu {
+.sauce-menu,
+.drink-menu {
     margin-top: 1em;
     background-color: var(--gray-background);
     border-radius: 10px;
@@ -106,29 +117,39 @@ h1 {
     justify-self: center;
 }
 
-.sauce-dom, .drink-dom {
+.sauce-dom,
+.drink-dom {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     justify-content: center;
     align-items: center;
     margin: 20px 13px;
-    /* margin-top: 20px; */
-    & > div {
+
+    &>p {
+        white-space: nowrap;
+        padding: 6px 0em;
+    }
+
+    &>div {
         background-color: var(--light-gray-menu);
-        /* background-color: hotpink; */
         border-radius: 5px;
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: background 0.3s;
         cursor: pointer;
+        transition:
+            background-color 0.3s ease,
+            box-shadow 0.1s ease,
+            trasform 0.2s ease;
+
         &:hover {
             background-color: var(--dark-gray);
         }
-        & > p {
-            white-space: nowrap;
-            padding: 6px 0em;    
+
+        &:active {
+            box-shadow: 0 0 8px var(--animation-green);
+            transform: scale(1.1);
         }
     }
 }
