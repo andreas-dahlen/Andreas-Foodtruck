@@ -1,3 +1,4 @@
+import { showErrorMessage } from "../displayLogic.js"
 import { cart } from "./saveAndAppend.js"
 
 const api = 'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/'
@@ -21,12 +22,12 @@ async function sendOrder() {
             })
         })
         const data = await response.json()
-        console.log('order success! current object looks like this now: ', cart)
         cart.orderId = data.order.id
         cart.timestamp = data.order.timestamp
         cart.eta = data.order.eta
     } catch (error) {
         console.error('ordering error: ', error.message)
+        showErrorMessage('order')
     }
 }
 

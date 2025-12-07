@@ -8,7 +8,7 @@ const sections = {
 
 function hideAllSections() {
     Object.values(sections).forEach(element => {
-        element.classList.add('display-remove') 
+        element.classList.add('display-remove')
     });
 }
 
@@ -18,4 +18,28 @@ function showSection(input) {
     sections[input].classList.remove('display-remove')
 }
 
-export { showSection }
+function showErrorMessage(type) {
+    const placement = document.querySelectorAll('.global-error-message')
+    const messages = {
+        empty: 'Kundvagnen är tom',
+        key: 'Nyckel-fel vid kontakt med servern',
+        tenant: 'Kunde inte identifiera användare',
+        menu: 'Menyn kunde inte laddas',
+        API: 'Serverfel-försök igen',
+        menuEmpty: 'Kunde inte hämta menyn',
+        order: 'Beställningen misslyckades',
+        itemNotFound: 'Menyartikel saknas',
+        default: 'Något gick fel'
+    }
+
+    const output = messages[type] || messages.default
+
+    placement.forEach(place => {
+        place.textContent = output
+        place.classList.remove('hidden')
+
+        setTimeout(() => place.classList.add('hidden'), 2500)
+    })
+}
+
+export { showSection, showErrorMessage }

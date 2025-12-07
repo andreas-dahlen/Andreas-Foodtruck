@@ -14,12 +14,14 @@
 </head>
 
 <body>
-    <section id="menu" class="menu-style">
+    <section id="menu" class="menu-style display-remove">
         <img class="test-button-delete-me" src="./assets/images/menu-example.png" alt="DELETE ME!">
         <div class="cart to-cart">
             <img src="./assets/images/cart.svg" alt="cart icon">
             <div class="amount-in-cart">0</div>
+            <div class="error-menu global-error-message hidden"></div>
         </div>
+
         <h1>MENY</h1>
 
         <div class="menu-dom">
@@ -54,44 +56,33 @@
         </div>
     </section>
 
-    <section id="cart" class="cart-style">
+    <section id="cart" class="cart-style display-remove">
         <img class="test-button-delete-me" src="./assets/images/cart-example.png" alt="DELETE ME!">
-        <div class="cart">
+        <div class="cart section-cart-adjust">
             <img src="./assets/images/cart.svg" alt="cart icon">
         </div>
-        <h1> Beställning </h1>
+        <h1> BESTÄLLNING </h1>
 
-        <div class="cart-contains">
-            <!-- create div elements here that will look like:-->
-            <!-- TODO: EXTRA: could add a remove item from list button -->
-            <!-- <div class="cart-boxes">
-                <div class="cart-title-style">
-                    <h2>class not needed..?</h2>
-                    <p class="spacer"></p>
-                    <h2 class="food-price"></h2>
-                </div>
-                <div class="amount-of-type">
-                    <button class="less-of-type"></button>
-                    <p> 0 stycken </p>
-                    <button class="more-of-type"></button>
-                </div>
-            </div> -->
+        <div class="cart-dom">
+            <div class="cart-wonton-dom"></div>
+            <div class="cart-dip-dom"></div>
+            <div class="cart-drink-dom"></div>
         </div>
 
-        <button class="menu">TILLBAKA <br> TILL <br> MENYN</button>
+        <button class="menu-button to-menu">MENY</button>
 
         <div class="total-display total-display-big">
             <div class="total-left-big">
                 <h2>TOTALT</h2>
                 <p>inkl 20% moms</p>
             </div>
-            <p class="cost">0 SEK</p>
+            <h2 class="cost">0 SEK</h2>
         </div>
 
         <button id="takeMoney" class="bottom-button">TAKE MY MONEY!</button>
     </section>
 
-    <section id="waiting" class="waiting-style">
+    <section id="waiting" class="waiting-style display-remove">
         <img class="test-button-delete-me" src="./assets/images/waiting-example.png" alt="DELETE ME!">
         <div class="img-box-big">
             <img src="./assets/images/boxtop.png" alt="big wonton image">
@@ -108,7 +99,7 @@
         <button class="new-order bottom-button">GÖR EN NY BESTÄLLNING</button>
     </section>
 
-    <section id="receipt" class="receipt-style">
+    <section id="receipt" class="receipt-style display-remove">
         <img class="test-button-delete-me" src="./assets/images/receipt-example.png" alt="DELETE ME!">
         <div class="receipt-big">
             <div class="receipt-header">
@@ -117,7 +108,7 @@
                 <p>beställningsnummer?</p>
             </div>
 
-            <div class="receipt-boxes">
+            <div class="receipt-dom">
                 <!-- <div class="receipt-title-style">
                     <h2>class not needed..?</h2>
                     <p class="spacer"></p>
@@ -133,7 +124,7 @@
                         <h2>TOTALT</h2>
                         <p>inkl 20% moms</p>
                     </div>
-                    <p class="cost">0 SEK</p>
+                    <h2 class="cost"></h2>
                 </div>
             </div>
         </div>

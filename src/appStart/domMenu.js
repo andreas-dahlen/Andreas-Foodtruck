@@ -1,3 +1,4 @@
+import { showErrorMessage } from '../displayLogic.js'
 import { cart } from '../saveAndApi/saveAndAppend.js'
             
 function makeWonton(item) {
@@ -32,7 +33,7 @@ function makeDipAndDrink(item, target) {
     const box = document.createElement('div')
     box.dataset.id = item.id
     const p = document.createElement('p')
-    p.textContent = item.name === "Wonton Standard" ? "Wonton std" : item.name;
+    p.textContent = item.name;
 
     box.appendChild(p)
     document.querySelector(target).appendChild(box)
@@ -40,7 +41,10 @@ function makeDipAndDrink(item, target) {
 
 function domMenu() {
 
-    if (!cart.menuItems) return
+    if (!cart.menuItems) {
+        showErrorMessage('menuEmpty')
+    return
+    }
 
     cart.menuItems.wontons.forEach(makeWonton)
 
@@ -49,4 +53,9 @@ function domMenu() {
     cart.menuItems.drinks.forEach(item => makeDipAndDrink(item, '.drink-dom'))
 }
 
-export { domMenu }
+function cartCounter() {
+    const totalQuantity = cart.orderList.reduce((sum, item) => sum + item.quantity, 0)
+    document.querySelector('.amount-in-cart').textContent = totalQuantity
+}
+
+export { domMenu, cartCounter }

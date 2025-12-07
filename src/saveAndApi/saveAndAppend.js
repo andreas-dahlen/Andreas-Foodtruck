@@ -1,3 +1,5 @@
+import { showErrorMessage } from "../displayLogic.js"
+
 const cart = {
     key: '',
     tenantID: '',
@@ -10,25 +12,17 @@ const cart = {
     totalPrice: ''
 }
 
-// const cart = {
-    // key: '',            // API key
-    // tenantID: '',       // tenant info
-    // tenantName: '',     // tenant info
-    // menuItems: [],      // array of full items user added {id, name, price}
-    // orderList: [],      // array of item IDs (for API)
-    // orderId: '',        // returned after POST
-    // timestamp: '',      // when order was sent
-    // eta: '',            // estimated time from API
-    // cartPrice: 0        // sum of item prices
-// }
-
 function addItemToCart(itemId) {
     let item = ''
     Object.values(cart.menuItems).forEach(category => {
         const found = category.find(i => i.id === itemId)
         if (found) item = found
     })
-    if (!item) return console.warn('Item not found:', itemId)
+    if (!item) {
+        console.warn('Item not found:', itemId)
+        showErrorMessage('itemNotFound')
+        return
+    }
 
     const existing = cart.orderList.find(i => i.id === itemId)
     if (existing) {
@@ -36,13 +30,23 @@ function addItemToCart(itemId) {
     } else {
         cart.orderList.push({
             id: item.id,
+            type: item.type,
             name: item.name,
             price: item.price,
             quantity: 1
         })
     }
-
     cart.totalPrice = cart.orderList.reduce((sum, i) => sum + i.price * i.quantity, 0)
 }
 
-export { cart, addItemToCart }
+function removeItemFromCart(itemId) {
+    const item = cart.orderList.find(i => i.id === itemId)
+    if (!item) return
+    item.quantity--
+    if (item.quantity <= 0) {
+        cart.orderList = cart.orderList.filter(i => i.id !== itemId)
+    }
+    cart.totalPrice = cart.orderList.reduce((sum, i) => sum + (i.price * i.quantity), 0)
+}
+
+export { cart, addItemToCart, removeItemFromCart }
