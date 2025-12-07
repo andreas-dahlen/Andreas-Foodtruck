@@ -1,34 +1,8 @@
-import { showSection } from "./displayLogic.js";
-import { addItemToCart } from "./saveAndApi/saveAndAppend.js";
+import { showSection, showErrorMessage } from "./displayLogic.js";
+import { cart, addItemToCart, removeItemFromCart } from "./saveAndApi/saveAndAppend.js";
 import { sendOrder } from "./saveAndApi/orderAndRecipt.js";
-import { domCart } from "./domCart.js";
-
-function testButton() {
-    let pos = 0;
-    const test = document.querySelectorAll('.test-button-delete-me')
-
-    test.forEach(item => {
-        item.addEventListener('click', () => {
-            console.log('click')
-            if (pos === 0) {
-                showSection('menu')
-            } else if (pos === 1) {
-                showSection('cart')
-            } else if (pos === 2) {
-                showSection('waiting')
-            } else {
-                showSection('receipt')
-            }
-
-            if (pos === 3) {
-                pos = 0
-            } else {
-                pos++
-            }
-        })
-    })
-}
-
+import { domCart, domPrice, removeDomCart } from "./domCart.js";
+import { cartCounter } from "./appStart/domMenu.js"
 function showMenuButtons() {
     const buttons = document.querySelectorAll('.to-menu')
     buttons.forEach(button => {
@@ -42,21 +16,63 @@ function showCartButtons() {
     const buttons = document.querySelectorAll('.to-cart')
     buttons.forEach(button => {
         button.addEventListener('click', () => {
+            if (cart.orderList.length === 0) {
+                showErrorMessage('empty')
+                return
+            }
             showSection('cart')
         })
     })
 }
 
 function menuItemButtons() {
+    const targets = ['.menu-dom', '.drink-dom', '.sauce-dom']
+
+    targets.forEach(domPlace => {
+        const container = document.querySelector(domPlace)
+        if (!container) return
+
+        container.addEventListener('click', (e) => {
+            if (e.target.classList.contains('less-button')) return
+            if (e.target.classList.contains('more-button')) return
+            const el = e.target.closest('[data-id]')
+            if (!el) return
+
+            const itemId = Number(el.dataset.id)
+            addItemToCart(itemId)
+            domCart(itemId)
+            domPrice()
+            cartCounter()
+
+        })
+    })
+}
+
+function cartPlusButtons() {
     document.addEventListener('click', (e) => {
-        const el = e.target.closest('[data-id]')
-        if (!el) return
+        if (!e.target.classList.contains('more-button')) return
 
-        const itemId = Number(el.dataset.id)
-
+        const itemId = Number(e.target.dataset.id)
         addItemToCart(itemId)
         domCart(itemId)
+        domPrice()
+        cartCounter()
+    })
+}
 
+function cartMinusButtons() {
+    document.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('less-button')) return
+
+        const itemId = Number(e.target.dataset.id)
+        removeItemFromCart(itemId)
+        removeDomCart(itemId)
+        domPrice()
+        cartCounter()
+
+        if (cart.orderList.length === 0) {
+            showSection('menu')
+        }
     })
 }
 
@@ -67,11 +83,11 @@ function orderButton() {
     })
 }
 
-
 export {
-    testButton,
     menuItemButtons,
     showCartButtons,
     orderButton,
-    showMenuButtons
+    showMenuButtons,
+    cartMinusButtons,
+    cartPlusButtons
 }

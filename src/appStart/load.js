@@ -1,4 +1,4 @@
-import { menuItemButtons, orderButton, showCartButtons} from "../buttons.js";
+import { menuItemButtons, orderButton, showCartButtons, showMenuButtons, cartMinusButtons, cartPlusButtons} from "../buttons.js";
 import { initApi } from "./apiInnit.js";
 import { domMenu } from './domMenu.js';
 import { showSection } from "../displayLogic.js";
@@ -10,7 +10,10 @@ async function initLoad() {
     showSection('menu')
     menuItemButtons()
     showCartButtons()
+    showMenuButtons()
     orderButton()
+    cartMinusButtons()
+    cartPlusButtons()
 }
 
 export { initLoad }

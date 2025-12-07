@@ -4,7 +4,6 @@ function domCart(itemId) {
     const item = cart.orderList.find(i => i.id === itemId)
     if (!item) return
 
-    // Define type containers
     const containerMap = {
         wonton: document.querySelector('.cart-wonton-dom'),
         dip: document.querySelector('.cart-dip-dom'),
@@ -13,14 +12,12 @@ function domCart(itemId) {
     const container = containerMap[item.type]
     if (!container) return
 
-    // Check if the item is already in the DOM
     let evaluate = container.querySelector(`.cart-boxes[data-id="${itemId}"]`)
     if (evaluate) {
         evaluate.querySelector('.amount-of-type').textContent = `${item.quantity} Stycken`
         return
     }
 
-    // Create cart box
     const cartBox = document.createElement('div')
     cartBox.classList.add('cart-boxes')
     cartBox.dataset.id = item.id
@@ -29,7 +26,9 @@ function domCart(itemId) {
     title.classList.add('cart-title-style')
 
     const name = document.createElement('h2')
-    name.textContent = item.name.toUpperCase()
+    let displayName = item.name.toUpperCase()
+    if (displayName === 'LOKA GRANATÄPPLE') displayName = 'LOKA GRANÄ'
+    name.textContent = displayName
 
     const span = document.createElement('span')
     span.classList.add('dots')
@@ -44,6 +43,8 @@ function domCart(itemId) {
 
     const more = document.createElement('button')
     more.classList.add('more-button')
+    more.textContent = '+'
+    more.dataset.id = item.id
 
     const p = document.createElement('p')
     p.classList.add('amount-of-type')
@@ -51,6 +52,8 @@ function domCart(itemId) {
 
     const less = document.createElement('button')
     less.classList.add('less-button')
+    less.textContent = '-'
+    less.dataset.id = item.id
 
     moreOrLess.append(more, p, less)
     cartBox.append(title, moreOrLess)
@@ -58,4 +61,26 @@ function domCart(itemId) {
     container.appendChild(cartBox)
 }
 
-export { domCart }
+function removeDomCart(itemId) {
+    const item = cart.orderList.find(i => i.id === itemId)
+
+    const placement = document.querySelector(`.cart-boxes[data-id="${itemId}"]`)
+    if (!placement) return
+
+    if (!item) {
+        placement.remove()
+        return
+    }
+
+    const quantity = placement.querySelector(`.amount-of-type`)
+    quantity.textContent = `${item.quantity} Stycken`
+}
+
+function domPrice() {
+    const costElement = document.querySelectorAll('.cost')
+    costElement.forEach(element => {
+        element.textContent = `${cart.totalPrice} SEK`
+    })
+}
+
+export { domCart, domPrice, removeDomCart }
