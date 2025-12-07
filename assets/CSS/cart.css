@@ -4,7 +4,13 @@
 }
 
 .section-cart-adjust {
-    height: 100px;
+    height: 93px;
+}
+
+.error-cart {
+    position: absolute;
+    top: 70px;
+    left: 20px;
 }
 
 .cart-dom {
@@ -40,19 +46,25 @@
     transform: translateY(11px);
 }
 
+.more-less-remove {
+    display: flex;
+    justify-content: space-between;
+}
+
 .more-or-less {
     display: flex;
     gap: 6px;
-    margin-bottom: 11px;
+    margin-bottom: 7px;
 }
 
-.more-button, .less-button {
+.more-button, .less-button, .remove-cart-button {
+    /* background-color: var(--light-gray-menu); */
     background-color: hotpink;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 26px;
-    height: 26px;
+    width: 25px;
+    height: 25px;
     border-radius: 100px;
     font-size: 2em;
     border: none;
@@ -64,6 +76,13 @@
     font-size: 0;
 }
 
+.remove-cart-button {
+    background-color: rgb(255, 96, 96);
+    margin-right: 22px;
+    font-size: 1em;
+    font-weight: bold;
+}
+
 .less-button::after {
     content: "";
     width: 14px;
@@ -72,7 +91,7 @@
     display: block;
 }
 
-.remove-cart-button {
+/* .remove-cart-button {
     background-color: hotpink;
     display: flex;
     align-items: center;
@@ -83,14 +102,14 @@
     font-size: 2em;
     border: none;
     cursor: pointer;
-}
+} */
 
 .menu-button {
     margin-left: 20px;
-    margin-top: 12em;
+    margin-top: 41px;
     background-color: var(--light-gray-menu);
     color: var(--text-color);
-    padding: 2px 5px;
+    padding: 1px 5px;
     border-radius: 5px;
     font-size: 1em;
     cursor: pointer;

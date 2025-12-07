@@ -44,6 +44,7 @@ html, body {
     font-size: 1.5em;
     font-weight: bold;
     text-shadow: 1px 2px 4px black;
+    max-width: 260px;
 }
 
 section {
@@ -65,10 +66,18 @@ section {
 
 .waiting-style {
     background-color: var(--gray-background);
+    padding-bottom: 6em;
 }
 
 .receipt-style {
     background-color: var(--gray-background);
+    padding-bottom: 6em;
+}
+
+h1 {
+    /* color: hotpink; */
+    margin-left: 16px;
+    margin-bottom: 9px;
 }
 
 .test-button-delete-me {
@@ -77,9 +86,9 @@ section {
     top: 0;
     left: 0;
     width: 100%;
-    max-width: 390px;
+    width: 370px;
     height: auto;
     z-index: 10;
     opacity: 0.5;
-    display: none;
+    /* display: none; */
 }

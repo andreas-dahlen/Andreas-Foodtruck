@@ -1,6 +1,6 @@
 .cart {
     position: relative;
-    height: 105px;
+    height: 97px;
 
     &>* {
         position: absolute;
@@ -10,8 +10,8 @@
 .cart img {
     background-color: var(--white-ish-cart);
     border-radius: 5px;
-    padding: 16px;
-    right: 22px;
+    padding: 14px;
+    right: 25px;
     top: 19px;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .amount-in-cart {
-    background-color: red;
+    background-color: rgb(255, 102, 117);
     width: 23px;
     height: 23px;
     border-radius: 100px;
@@ -34,8 +34,8 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    right: 10px;
-    top: 10px;
+    right: 13px;
+    top: 7px;
 }
 
 .error-menu {
@@ -44,23 +44,19 @@
     left: 20px;
 }
 
-h1 {
-    margin-left: 19px;
-    margin-bottom: 8px;
-}
-
 .menu-dom {
     background-color: var(--light-gray-menu);
+    /* background-color: hotpink; */
     border-radius: 5em;
     width: 87vw;
     justify-self: center;
 
     &> :first-child {
-        border-radius: 10px 10px 0 0;
+        border-radius: 9px 9px 0 0;
     }
 
     &> :last-child {
-        border-radius: 0 0 10px 10px;
+        border-radius: 0 0 9px 9px;
     }
 }
 
@@ -74,7 +70,7 @@ h1 {
         trasform 0.2s ease;
 
     &>p {
-        padding: 3px 0 22px 14px;
+        padding: 3px 0 19px 14px;
     }
 
     &:hover {
@@ -93,10 +89,12 @@ h1 {
     gap: 10px;
 
     &>h2:first-child {
+        font-size: 1.3em;
         padding: 13px 3px 0 15px;
     }
 
     &>h2:last-child {
+        font-size: 1.4em;
         padding: 13px 15px 0 3px;
     }
 }
@@ -104,13 +102,14 @@ h1 {
 .menu-title-style .dots {
     flex: 1;
     border-bottom: 3px dotted var(--text-color);
-    transform: translateY(20px);
+    transform: translateY(18px);
 }
 
 .sauce-menu,
 .drink-menu {
-    margin-top: 1em;
+    margin-top: 14px;
     background-color: var(--gray-background);
+    /* background-color: hotpink; */
     border-radius: 10px;
     width: 87vw;
     padding-bottom: 2px;
@@ -119,29 +118,31 @@ h1 {
 
 .sauce-dom,
 .drink-dom {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 13px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 21px 16px 16px 16px;
 
-    &>p {
-        white-space: nowrap;
-        padding: 6px 0em;
-    }
-
-    &>div {
+    &>button {
+        flex: 1 1 auto;
+        min-width: 63px;
+        max-width: max-content;
+        color: var(--text-color);
         background-color: var(--light-gray-menu);
+        /* background-color: hotpink; */
         border-radius: 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        padding: 6px 12px;
+        /* display: inline-flex; */
+        /* justify-content: center; */
+        /* align-items: center; */
         cursor: pointer;
+        white-space: nowrap;
         transition:
             background-color 0.3s ease,
             box-shadow 0.1s ease,
-            trasform 0.2s ease;
+            transform 0.2s ease;
 
         &:hover {
             background-color: var(--dark-gray);
@@ -153,3 +154,16 @@ h1 {
         }
     }
 }
+
+/* @media (max-width: 400px) {
+    .sauce-dom > button,
+    .drink-dom > button {
+        min-width: 50px;
+        padding: 4px 8px;
+        font-size: 0.9em;
+    }
+    .sauce-dom,
+    .drink-dom  {
+        gap:15px;
+    }
+} */
