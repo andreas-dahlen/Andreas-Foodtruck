@@ -49,4 +49,13 @@ function removeItemFromCart(itemId) {
     cart.totalPrice = cart.orderList.reduce((sum, i) => sum + (i.price * i.quantity), 0)
 }
 
-export { cart, addItemToCart, removeItemFromCart }
+function removeWholeItemFromCart(itemId) {
+    cart.orderList = cart.orderList.filter(i => i.id !== itemId)
+
+    cart.totalPrice = cart.orderList.reduce(
+        (sum, i) => sum + (i.price * i.quantity), 
+        0
+    )
+}
+
+export { cart, addItemToCart, removeItemFromCart, removeWholeItemFromCart }

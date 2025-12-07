@@ -1,8 +1,10 @@
 import { showSection, showErrorMessage } from "./displayLogic.js";
-import { cart, addItemToCart, removeItemFromCart } from "./saveAndApi/saveAndAppend.js";
+import { cart, addItemToCart, removeItemFromCart, removeWholeItemFromCart } from "./saveAndApi/saveAndAppend.js";
 import { sendOrder } from "./saveAndApi/orderAndRecipt.js";
-import { domCart, domPrice, removeDomCart } from "./domCart.js";
+import { domCart, domPrice, removeDomCart, removeWholeDomCart } from "./domCart.js";
 import { cartCounter } from "./appStart/domMenu.js"
+
+
 function showMenuButtons() {
     const buttons = document.querySelectorAll('.to-menu')
     buttons.forEach(button => {
@@ -33,12 +35,10 @@ function menuItemButtons() {
         if (!container) return
 
         container.addEventListener('click', (e) => {
-            if (e.target.classList.contains('less-button')) return
-            if (e.target.classList.contains('more-button')) return
-            const el = e.target.closest('[data-id]')
-            if (!el) return
+            const box = e.target.closest('[data-id]')
+            if (!box) return
 
-            const itemId = Number(el.dataset.id)
+            const itemId = Number(box.dataset.id)
             addItemToCart(itemId)
             domCart(itemId)
             domPrice()
@@ -48,31 +48,42 @@ function menuItemButtons() {
     })
 }
 
-function cartPlusButtons() {
-    document.addEventListener('click', (e) => {
-        if (!e.target.classList.contains('more-button')) return
+function cartButtons() {
+    const cartDom = document.querySelector('.cart-dom')
+    if (!cartDom) return
 
-        const itemId = Number(e.target.dataset.id)
-        addItemToCart(itemId)
-        domCart(itemId)
-        domPrice()
-        cartCounter()
-    })
-}
+    cartDom.addEventListener('click', (e) => {
+        const more = e.target.closest('.more-button')
+        const less = e.target.closest('.less-button')
+        const remove = e.target.closest('.remove-cart-button')
 
-function cartMinusButtons() {
-    document.addEventListener('click', (e) => {
-        if (!e.target.classList.contains('less-button')) return
-
-        const itemId = Number(e.target.dataset.id)
-        removeItemFromCart(itemId)
-        removeDomCart(itemId)
-        domPrice()
-        cartCounter()
-
-        if (cart.orderList.length === 0) {
-            showSection('menu')
+        if (more) {
+            const itemId = Number(e.target.dataset.id)
+            if (!itemId) return
+            addItemToCart(itemId)
+            domCart(itemId)
         }
+        else if (less) {
+            const itemId = Number(e.target.dataset.id)
+            if (!itemId) return
+            removeItemFromCart(itemId)
+            removeDomCart(itemId)
+            if (cart.orderList.length === 0) {
+                showSection('menu')
+            }
+        }
+        else if (remove) {
+            const itemId = Number(e.target.dataset.id)
+            if (!itemId) return
+            removeWholeItemFromCart(itemId)
+            removeWholeDomCart(itemId)
+            if (cart.orderList.length === 0) {
+                showSection('menu')
+            }
+        }
+
+        domPrice()
+        cartCounter()
     })
 }
 
@@ -88,6 +99,5 @@ export {
     showCartButtons,
     orderButton,
     showMenuButtons,
-    cartMinusButtons,
-    cartPlusButtons
+    cartButtons
 }
