@@ -9,7 +9,11 @@ const cart = {
     orderId: '',
     timestamp: '',
     eta: '',
-    totalPrice: ''
+    totalPrice: '',
+
+    //this should replace orderId, timestamp, eta and totalPrice
+    orderInfo: '',
+    receiptInfo:  ''
 }
 
 //TODO: could create a saveorderId but probably not

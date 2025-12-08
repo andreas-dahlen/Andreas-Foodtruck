@@ -1,6 +1,6 @@
 .cart-style h1 {
     position: absolute;
-    top: 35px;
+    top: 70px;
 }
 
 .section-cart-adjust {
@@ -9,8 +9,8 @@
 
 .error-cart {
     position: absolute;
-    top: 70px;
-    left: 20px;
+    top: 10px;
+    left: 80px;
 }
 
 .cart-dom {

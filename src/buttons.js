@@ -1,6 +1,6 @@
 import { showSection, showErrorMessage } from "./displayLogic.js";
 import { cart, resetCart, addItemToCart, removeItemFromCart, removeWholeItemFromCart } from "./saveAndApi/saveAndAppend.js";
-import { sendOrder } from "./saveAndApi/orderAndRecipt.js";
+import { sendOrder, getReceipt } from "./saveAndApi/orderAndRecipt.js";
 import { domCart, domPrice, removeDomCart, removeWholeDomCart } from "./domCart.js";
 import { cartCounter } from "./appStart/domMenu.js"
 import { etaTimer, orderNumber } from "./domwaiting.js";
@@ -121,8 +121,19 @@ function orderButton() {
 
 function receiptButton() {
     const button = document.querySelector('.open-receipt')
-    button.addEventListener('click', () => {
-        showSection('receipt')
+    button.addEventListener('click', async () => {
+        showSection('loading')
+        button.disabled = true
+
+        try {
+            await getReceipt()
+            showSection('receipt')
+        } catch (error) {
+            showErrorMessage('receipt')
+            showSection('waiting')
+        } finally {
+            button.disabled = false
+        }
     })
 }
 
