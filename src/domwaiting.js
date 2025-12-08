@@ -7,7 +7,6 @@ function etaTimer(action = 'start') {
     const timerDisplay = document.querySelector('.progress h2')
     const textDisplay = document.querySelector('.progress h1')
 
-
     if (action == 'start') {
         const etaRaw = Date.parse(cart.eta) - Date.parse(cart.timestamp)
         etaSec = Math.floor(etaRaw / 1000)
@@ -46,8 +45,8 @@ function etaTimer(action = 'start') {
 function orderNumber() {
     const orderNumber = document.querySelector('.progress p')
     const receiptNumber = document.querySelector('.receipt-header p')
-    orderNumber.textContent = cart.orderId
-    receiptNumber.textContent = cart.orderId
+    orderNumber.textContent = `#${cart.orderId}`
+    receiptNumber.textContent = `#${cart.orderId}`
 }
 // console.log('timerPOS= ', timerDisplay)
 // console.log('ETA= ', cart.eta)

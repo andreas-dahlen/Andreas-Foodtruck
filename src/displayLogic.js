@@ -22,15 +22,16 @@ function showSection(input) {
 function showErrorMessage(type) {
     const placement = document.querySelectorAll('.global-error-message')
     const messages = {
-        empty: 'Kundvagnen är tom',
-        key: 'Nyckel-fel vid kontakt med servern',
-        tenant: 'Kunde inte identifiera användare',
-        menu: 'Menyn kunde inte laddas',
-        API: 'Serverfel-försök igen',
-        menuEmpty: 'Kunde inte hämta menyn',
-        order: 'Beställningen misslyckades',
-        itemNotFound: 'Menyartikel saknas',
-        default: 'Något gick fel'
+        empty: 'Din korg är tom\nlägg till varor',
+        key: 'Anslutningsfel\nförsök igen senare',
+        tenant: 'Verifieringsfel\nförsök igen senare', //inloggningsfel kontofel if its implemented
+        menu: 'Laddningsfel\nförsök igen senare',
+        API: 'Serverfel\nförsök igen senare',
+        menuEmpty: 'Laddningsfel\nförsök igen senare',
+        order: 'Beställningsfel\nförsök igen senare',
+        itemNotFound: 'Artikel saknas\nförsök igen senare',
+        receipt: 'Kvittofel\nförsök igen senare',
+        default: 'Något gick fel\nförsök igen senare'
     }
 
     const output = messages[type] || messages.default
@@ -44,3 +45,13 @@ function showErrorMessage(type) {
 }
 
 export { showSection, showErrorMessage }
+
+// 'Din korg är tom – lägg till varor',
+// 'Anslutningsfel – försök igen senare',
+// 'Verifieringsfel – försök igen senare',
+// 'Laddningsfel – försök igen senare',
+// 'Serverfel – försök igen senare',
+// 'Laddningsfel – försök igen senare',
+// 'Beställningsfel – försök igen senare',
+// 'Artikel saknas – försök igen senare',
+// 'Något gick fel – försök igen senare'

@@ -44,7 +44,8 @@ html, body {
     font-size: 1.5em;
     font-weight: bold;
     text-shadow: 1px 2px 4px black;
-    max-width: 330px;
+    white-space: pre-wrap;
+    text-align: center;
 }
 
 section {
@@ -73,6 +74,7 @@ section {
 .receipt-style {
     background-color: var(--gray-background);
     padding-bottom: 8px;
+    padding-top: 157px;
 }
 
 h1 {
@@ -86,7 +88,6 @@ h1 {
     pointer-events: none;
     top: 0;
     left: 0;
-    width: 100%;
     width: 370px;
     height: auto;
     z-index: 10;

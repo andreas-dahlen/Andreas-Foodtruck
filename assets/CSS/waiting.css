@@ -1,7 +1,7 @@
 .error-waiting {
     position: absolute;
-    top: 57px;
-    left: 20px;
+    top: 40px;
+    left: 90px;
 }
 
 .img-box-big {
@@ -24,6 +24,7 @@
 
     p{
         margin-top: 1em;
+        font-weight: bold;
     }
 }
 

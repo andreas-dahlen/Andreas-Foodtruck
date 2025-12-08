@@ -10,33 +10,33 @@
     <link rel="stylesheet" href="./assets/CSS/menu.css">
     <link rel="stylesheet" href="./assets/CSS/cart.css">
     <link rel="stylesheet" href="./assets/CSS/waiting.css">
+    <link rel="stylesheet" href="./assets/CSS/receipt.css">
 
     <script type="module" src="./src/main.js"></script>
 </head>
 
 <body>
+
+    <!-- <section id="mainPage" class="first-page-style display-remove"></section> -->
+    <!-- TODO: if i have time -->
+
     <section id="loading" class="loading-style display-remove"></section>
 
     <section id="menu" class="menu-style display-remove">
+
+        <div class="error-menu global-error-message hidden"></div>
+
         <img class="test-button-delete-me" src="./assets/images/menu-example.png" alt="DELETE ME!">
+        <!-- TODO: delete this -->
+
         <div class="cart to-cart">
             <img src="./assets/images/cart.svg" alt="cart icon">
             <div class="amount-in-cart">0</div>
-            <div class="error-menu global-error-message hidden"></div>
         </div>
 
         <h1>MENY</h1>
 
-        <div class="menu-dom">
-            <!-- create div elements here that will look like:-->
-            <!-- <div class="food-boxes">
-                <div class="menu-title-style">
-                    <h2>class not needed..?</h2>
-                    <h2 class="food-price"></h2>
-                </div>
-                <p class="ingredients"></p>
-            </div> -->
-        </div>
+        <div class="menu-dom"></div>
 
         <div class="sauce-menu">
             <div class="menu-title-style">
@@ -60,10 +60,14 @@
     </section>
 
     <section id="cart" class="cart-style display-remove">
+
+        <div class="error-cart global-error-message hidden"></div>
+
         <img class="test-button-delete-me" src="./assets/images/cart-example.png" alt="DELETE ME!">
+        <!-- TODO: delete this -->
+
         <div class="cart section-cart-adjust">
             <img src="./assets/images/cart.svg" alt="cart icon">
-            <div class="error-cart global-error-message hidden"></div>
         </div>
         <h1> BESTÄLLNING </h1>
 
@@ -87,7 +91,12 @@
     </section>
 
     <section id="waiting" class="waiting-style display-remove">
+
+        <div class="error-waiting global-error-message hidden"></div>
+
         <img class="test-button-delete-me" src="./assets/images/waiting-example.png" alt="DELETE ME!">
+        <!-- TODO: delete this -->
+
         <div class="img-box-big">
             <img src="./assets/images/boxtop.png" alt="big wonton image">
         </div>
@@ -104,7 +113,12 @@
     </section>
 
     <section id="receipt" class="receipt-style display-remove">
+
+        <div class="error-receipt global-error-message hidden"></div>
+
         <img class="test-button-delete-me" src="./assets/images/receipt-example.png" alt="DELETE ME!">
+        <!-- TODO: delete this -->
+
         <div class="receipt-big">
             <div class="receipt-header">
                 <img src="./assets/images/logo.png" alt="">
