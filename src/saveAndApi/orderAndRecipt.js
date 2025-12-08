@@ -24,8 +24,6 @@ async function sendOrder() {
         cart.orderId = data.order.id
         cart.timestamp = data.order.timestamp
         cart.eta = data.order.eta
-        console.log(data)
-        //TODO: need to do something about multiple clicks... just order once!!!
     } catch (error) {
         console.error('ordering error: ', error.message)
         showErrorMessage('order')

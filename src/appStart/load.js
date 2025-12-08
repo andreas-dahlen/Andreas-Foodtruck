@@ -3,7 +3,9 @@ import {
     showCartButtons,
     showMenuButtons,
     cartButtons,
-    menuItemButtons
+    menuItemButtons,
+    showMenuNewOrderButtons,
+    receiptButton
 } from "../buttons.js";
 import { initApi } from "./apiInnit.js";
 import { domMenu } from './domMenu.js';
@@ -19,9 +21,13 @@ async function initLoad() {
     cartButtons()
 
     showCartButtons()
-    showMenuButtons()
 
+    showMenuButtons()
     orderButton()
+
+    showMenuNewOrderButtons()
+
+    receiptButton()
 }
 
 export { initLoad }

@@ -2,7 +2,8 @@ const sections = {
     menu: document.querySelector('#menu'),
     cart: document.querySelector('#cart'),
     waiting: document.querySelector('#waiting'),
-    receipt: document.querySelector('#receipt')
+    receipt: document.querySelector('#receipt'),
+    loading: document.querySelector('#loading')
 }
 
 
