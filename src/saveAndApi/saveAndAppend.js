@@ -12,6 +12,16 @@ const cart = {
     totalPrice: ''
 }
 
+//TODO: could create a saveorderId but probably not
+
+function resetCart() {
+    cart.orderList = []
+    cart.orderId = ''
+    cart.timestamp = ''
+    cart.eta = ''
+    cart.totalPrice = ''
+}
+
 function addItemToCart(itemId) {
     let item = ''
     Object.values(cart.menuItems).forEach(category => {
@@ -58,4 +68,4 @@ function removeWholeItemFromCart(itemId) {
     )
 }
 
-export { cart, addItemToCart, removeItemFromCart, removeWholeItemFromCart }
+export { cart, resetCart, addItemToCart, removeItemFromCart, removeWholeItemFromCart }

@@ -1,0 +1,47 @@
+.error-waiting {
+    position: absolute;
+    top: 57px;
+    left: 20px;
+}
+
+.img-box-big {
+    width: 100%;
+    max-width: 368px;
+    margin: 0 auto;
+    padding-top: 92px;
+ 
+    &>img {
+        max-width: 100%;
+    }
+}
+
+.progress {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: -1.1em 2em 12px 2em;
+
+    p{
+        margin-top: 1em;
+    }
+}
+
+.open-receipt {
+    display: flex;
+    width: 87vw;
+    background-color: transparent;
+    border: 2px solid white;
+    justify-self: center;
+    justify-content: center;
+    margin-top: 40px;
+    border-radius: 5px;
+    font-size: 1.5em;
+    padding: 20px 0;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.progress > h1, .progress > h2, .progress > p, .open-receipt {
+    color: var(--text-color)
+}

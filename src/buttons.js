@@ -1,8 +1,9 @@
 import { showSection, showErrorMessage } from "./displayLogic.js";
-import { cart, addItemToCart, removeItemFromCart, removeWholeItemFromCart } from "./saveAndApi/saveAndAppend.js";
+import { cart, resetCart, addItemToCart, removeItemFromCart, removeWholeItemFromCart } from "./saveAndApi/saveAndAppend.js";
 import { sendOrder } from "./saveAndApi/orderAndRecipt.js";
 import { domCart, domPrice, removeDomCart, removeWholeDomCart } from "./domCart.js";
 import { cartCounter } from "./appStart/domMenu.js"
+import { etaTimer, orderNumber } from "./domwaiting.js";
 
 
 function showMenuButtons() {
@@ -10,6 +11,17 @@ function showMenuButtons() {
     buttons.forEach(button => {
         button.addEventListener('click', () => {
             showSection('menu')
+        })
+    })
+}
+
+function showMenuNewOrderButtons() {
+    const buttons = document.querySelectorAll('.new-order')
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            resetCart()
+            showSection('menu')
+            cartCounter()
         })
     })
 }
@@ -89,15 +101,38 @@ function cartButtons() {
 
 function orderButton() {
     const button = document.querySelector('#takeMoney')
-    button.addEventListener('click', () => {
-        sendOrder()
+    button.addEventListener('click', async () => {
+        showSection('loading')
+        button.disabled = true
+
+        try {
+            await sendOrder()
+            etaTimer('start')
+            orderNumber()
+            showSection('waiting')
+        } catch (error) {
+            showErrorMessage('order')
+            showSection('cart')
+        } finally {
+            button.disabled = false
+        }
     })
 }
+
+function receiptButton() {
+    const button = document.querySelector('.open-receipt')
+    button.addEventListener('click', () => {
+        showSection('receipt')
+    })
+}
+
 
 export {
     menuItemButtons,
     showCartButtons,
     orderButton,
     showMenuButtons,
-    cartButtons
+    cartButtons,
+    showMenuNewOrderButtons,
+    receiptButton
 }
