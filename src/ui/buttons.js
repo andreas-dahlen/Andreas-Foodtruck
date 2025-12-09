@@ -1,9 +1,13 @@
-import { showSection, showErrorMessage } from "./displayLogic.js";
-import { cart, resetCart, addItemToCart, removeItemFromCart, removeWholeItemFromCart } from "./saveAndApi/saveAndAppend.js";
-import { sendOrder, getReceipt } from "./saveAndApi/orderAndRecipt.js";
-import { domCart, domPrice, removeDomCart, removeWholeDomCart } from "./domCart.js";
-import { cartCounter } from "./appStart/domMenu.js"
-import { etaTimer, orderNumber } from "./domwaiting.js";
+import { showSection } from "./transitions.js";
+import { showErrorMessage } from "../logic/errorLogic.js";
+import { cart } from "../logic/state.js";
+    
+import{ resetCart, addItemToCart, removeItemFromCart, removeWholeItemFromCart } from "../logic/stateLogic.js";
+import { sendOrder} from "../api/placeOrder.js";
+import { getReceipt } from "../api/getReceipt.js";
+import { domCart, domPrice, removeDomCart, removeWholeDomCart } from "../dom/domCart.js";
+import { cartCounter } from "../dom/domMenu.js"
+import { etaTimer, orderNumber } from "../dom/domWaiting.js";
 
 
 function showMenuButtons() {
@@ -27,7 +31,7 @@ function showMenuNewOrderButtons() {
 }
 
 function showCartButtons() {
-    const buttons = document.querySelectorAll('.to-cart')
+    const buttons = document.querySelectorAll('.cart-button')
     buttons.forEach(button => {
         button.addEventListener('click', () => {
             if (cart.orderList.length === 0) {

@@ -1,22 +1,5 @@
-import { showErrorMessage } from "../displayLogic.js"
-
-const cart = {
-    key: '',
-    tenantID: '',
-    tenantName: '',
-    menuItems: {},
-    orderList: [],
-    orderId: '',
-    timestamp: '',
-    eta: '',
-    totalPrice: '',
-
-    //this should replace orderId, timestamp, eta and totalPrice
-    orderInfo: '',
-    receiptInfo:  ''
-}
-
-//TODO: could create a saveorderId but probably not
+import { cart } from "./state.js"
+import { showErrorMessage } from "../logic/errorLogic.js"
 
 function resetCart() {
     cart.orderList = []
@@ -72,4 +55,4 @@ function removeWholeItemFromCart(itemId) {
     )
 }
 
-export { cart, resetCart, addItemToCart, removeItemFromCart, removeWholeItemFromCart }
+export {resetCart, addItemToCart, removeItemFromCart, removeWholeItemFromCart }

@@ -1,11 +1,9 @@
-import { showErrorMessage } from "../displayLogic.js";
-import { cart } from "../saveAndApi/saveAndAppend.js";
-
-const api = 'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/'
+import { showErrorMessage } from "../logic/errorLogic.js";
+import { cart } from "../logic/state.js";
 
 async function getApiKey() {
     try {
-        const response = await fetch(`${api}/keys`, {
+        const response = await fetch(`${cart.api}/keys`, {
             method: 'POST',
         });
         const data = await response.json()
@@ -18,7 +16,7 @@ async function getApiKey() {
 
 async function getApiTenant() {
     try {
-        const response = await fetch(`${api}/tenants`, {
+        const response = await fetch(`${cart.api}/tenants`, {
             method: 'POST',
             headers: {
                 'accept': 'application/json',
@@ -40,7 +38,7 @@ async function getApiTenant() {
 
 async function getApiMenuItems() {
     try {
-        const response = await fetch(`${api}/menu`, {
+        const response = await fetch(`${cart.api}/menu`, {
             headers: {
                 'x-zocom': cart.key,
                 'accept': 'application/json'
@@ -72,17 +70,17 @@ function menuSort(data) {
 
     const dipOrder = [6, 9, 7, 10, 11, 8];
     cart.menuItems.dips.sort((a, b) => {
-            const aIndex = dipOrder.indexOf(a.id);
-            const bIndex = dipOrder.indexOf(b.id);
-            return (aIndex === -1 ? Infinity : aIndex) - (bIndex === -1 ? Infinity : bIndex);
-        });
+        const aIndex = dipOrder.indexOf(a.id);
+        const bIndex = dipOrder.indexOf(b.id);
+        return (aIndex === -1 ? Infinity : aIndex) - (bIndex === -1 ? Infinity : bIndex);
+    });
 
     const drinkOrder = [13, 14, 15, 12, 17, 16];
     cart.menuItems.drinks.sort((a, b) => {
-            const aIndex = drinkOrder.indexOf(a.id);
-            const bIndex = drinkOrder.indexOf(b.id);
-            return (aIndex === -1 ? Infinity : aIndex) - (bIndex === -1 ? Infinity : bIndex);
-        });
+        const aIndex = drinkOrder.indexOf(a.id);
+        const bIndex = drinkOrder.indexOf(b.id);
+        return (aIndex === -1 ? Infinity : aIndex) - (bIndex === -1 ? Infinity : bIndex);
+    });
 }
 
 async function initApi() {

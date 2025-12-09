@@ -11,6 +11,8 @@
     justify-self: center;
     text-align: center;
     padding-top: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px black;
 }
 
 .receipt-header {

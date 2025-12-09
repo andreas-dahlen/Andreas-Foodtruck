@@ -1,24 +1,3 @@
-const sections = {
-    menu: document.querySelector('#menu'),
-    cart: document.querySelector('#cart'),
-    waiting: document.querySelector('#waiting'),
-    receipt: document.querySelector('#receipt'),
-    loading: document.querySelector('#loading')
-}
-
-
-function hideAllSections() {
-    Object.values(sections).forEach(element => {
-        element.classList.add('display-remove')
-    });
-}
-
-function showSection(input) {
-    hideAllSections()
-
-    sections[input].classList.remove('display-remove')
-}
-
 function showErrorMessage(type) {
     const placement = document.querySelectorAll('.global-error-message')
     const messages = {
@@ -44,14 +23,4 @@ function showErrorMessage(type) {
     })
 }
 
-export { showSection, showErrorMessage }
-
-// 'Din korg är tom – lägg till varor',
-// 'Anslutningsfel – försök igen senare',
-// 'Verifieringsfel – försök igen senare',
-// 'Laddningsfel – försök igen senare',
-// 'Serverfel – försök igen senare',
-// 'Laddningsfel – försök igen senare',
-// 'Beställningsfel – försök igen senare',
-// 'Artikel saknas – försök igen senare',
-// 'Något gick fel – försök igen senare'
+export { showErrorMessage }

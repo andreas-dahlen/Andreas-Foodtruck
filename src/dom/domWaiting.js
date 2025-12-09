@@ -1,4 +1,4 @@
-import { cart } from "./saveAndApi/saveAndAppend.js";
+import { cart } from "../logic/state.js";
 
 let timerInterval = null
 let etaSec = 0
@@ -25,7 +25,7 @@ function etaTimer(action = 'start') {
             if (etaSec >= 120) {
                 const minutes = Math.floor(etaSec / 60);
                 timerDisplay.textContent = `ETA ${minutes} MIN`
-            } else if (etaSec >=60) {
+            } else if (etaSec >= 60) {
                 const minutes = Math.floor(etaSec / 60);
                 const seconds = etaSec % 60;
                 timerDisplay.textContent = `ETA ${minutes}:${seconds.toString().padStart(2, '0')} MIN`
@@ -48,9 +48,5 @@ function orderNumber() {
     orderNumber.textContent = `#${cart.orderId}`
     receiptNumber.textContent = `#${cart.orderId}`
 }
-// console.log('timerPOS= ', timerDisplay)
-// console.log('ETA= ', cart.eta)
-// console.log('timestamp= ', cart.timestamp)
-// console.log('orderId= ', cart.orderId)
 
-export { etaTimer, orderNumber}
+export { etaTimer, orderNumber }
