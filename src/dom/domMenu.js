@@ -1,8 +1,8 @@
-import { showErrorMessage } from '../displayLogic.js'
-import { cart } from '../saveAndApi/saveAndAppend.js'
-            
+import { showErrorMessage } from '../logic/errorLogic.js'
+import { cart } from '../logic/state.js'
+
 function makeWonton(item) {
-    const foodBox = document.createElement('div')
+    const foodBox = document.createElement('button')
     foodBox.classList.add('food-boxes')
     foodBox.dataset.id = item.id
 
@@ -41,7 +41,7 @@ function domMenu() {
 
     if (!cart.menuItems) {
         showErrorMessage('menuEmpty')
-    return
+        return
     }
 
     cart.menuItems.wontons.forEach(makeWonton)

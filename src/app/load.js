@@ -1,15 +1,15 @@
-import {
-    orderButton,
+import { 
+    menuItemButtons,
+    cartButtons,
     showCartButtons,
     showMenuButtons,
-    cartButtons,
-    menuItemButtons,
+    orderButton,
     showMenuNewOrderButtons,
     receiptButton
-} from "../buttons.js";
-import { initApi } from "./apiInnit.js";
-import { domMenu } from './domMenu.js';
-import { showSection } from "../displayLogic.js";
+} from "../ui/buttons.js";
+import { initApi } from "../api/apiInnit.js";
+import { domMenu } from '../dom/domMenu.js';
+import { showSection } from "../ui/transitions.js";
 
 async function initLoad() {
     //show loading

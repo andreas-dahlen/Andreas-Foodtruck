@@ -41,6 +41,23 @@
     padding: 20px 0;
     white-space: nowrap;
     font-weight: bold;
+    transition:
+        box-shadow 0.3s ease,
+        transform 0.2s ease;
+
+    &:hover {
+        transform: scale(1.03);
+        box-shadow: 0 4px 15px black;
+        background-color: var(--light-gray-menu);
+    }
+
+    &:focus-visible {
+        position: relative;
+        outline: 3px solid var(--animation-green);
+        outline-offset: 1px;
+        border-radius: 5px;
+        transform: scale(1.03);
+    }
 }
 
 .progress > h1, .progress > h2, .progress > p, .open-receipt {

@@ -1,3 +1,3 @@
-import { initLoad } from "./appStart/load.js";
+import { initLoad } from "./app/load.js";
 
 initLoad()

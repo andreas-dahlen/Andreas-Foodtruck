@@ -1,7 +1,5 @@
-import { showErrorMessage } from "../displayLogic.js"
-import { cart } from "./saveAndAppend.js"
-
-const api = 'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/'
+import { showErrorMessage } from "../logic/errorLogic.js"
+import { cart } from "../logic/state.js"
 
 async function sendOrder() {
     try {
@@ -9,7 +7,7 @@ async function sendOrder() {
 
         const apiOrderList = cart.orderList.flatMap(item => Array(item.quantity).fill(item.id))
 
-        const response = await fetch(`${api}/${cart.tenantName}/orders`, {
+        const response = await fetch(`${cart.api}/${cart.tenantName}/orders`, {
             method: 'POST',
             headers: {
                 'accept': 'application/json',
@@ -20,6 +18,7 @@ async function sendOrder() {
                 items: apiOrderList
             })
         })
+
         const data = await response.json()
         cart.orderId = data.order.id
         cart.timestamp = data.order.timestamp
@@ -32,22 +31,4 @@ async function sendOrder() {
     }
 }
 
-async function getReceipt() {
-    try {
-        const response = await fetch(`${api}/receipts/${cart.orderId}`, {
-            headers: {
-                'accept': 'application/json',
-                'x-zocom': cart.key,
-                'Content-Type': 'application/json'
-            }
-        })
-
-        const data = await response.json()
-        console.log(data)
-    } catch (error) {
-        console.error('receipt error: ', error.message)
-        showErrorMessage('receipt')
-    }
-}
-
-export { sendOrder, getReceipt }
+export { sendOrder }

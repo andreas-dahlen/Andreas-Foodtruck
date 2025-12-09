@@ -1,31 +1,30 @@
-.cart {
-    position: relative;
+#menu > .header-spacer {
     height: 97px;
-
-    &>* {
-        position: absolute;
-    }
 }
 
-.cart img {
-    background-color: var(--white-ish-cart);
-    border-radius: 5px;
-    padding: 14px;
+.cart {
     right: 25px;
     top: 19px;
 }
 
-.to-cart img {
+.cart-button {
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
-
+    
     &:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 15px black;
     }
+    &:focus-visible {
+        outline: 3px solid var(--animation-green);
+        border-radius: 5px;
+        transform: scale(1.05);
+    }
 }
 
+
 .amount-in-cart {
+    position: absolute;
     background-color: rgb(255, 102, 117);
     width: 23px;
     height: 23px;
@@ -34,8 +33,8 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    right: 13px;
-    top: 7px;
+    left: 50px;
+    bottom: 50px;
 }
 
 .error-menu {
@@ -61,9 +60,14 @@
 }
 
 .food-boxes {
+    /* position: relative; */
+    all: unset;
+    width: 87vw;
+    /* color: var(--text-color); */
     background-color: var(--gray-background);
     cursor: pointer;
     margin-bottom: 1px;
+    overflow: visible;
     transition:
         background-color 0.3s ease,
         box-shadow 0.1s ease,
@@ -80,6 +84,15 @@
     &:active {
         box-shadow: 0 0 8px var(--animation-green);
         transform: scale(1.03);
+    }
+
+    &:focus-visible {
+        position: relative;
+        outline: 3px solid var(--animation-green);
+        background-color: var(--dark-gray);
+        outline-offset: 1px;
+        border-radius: 5px;
+        transform: scale(1.05);
     }
 }
 
@@ -109,7 +122,6 @@
 .drink-menu {
     margin-top: 14px;
     background-color: var(--gray-background);
-    /* background-color: hotpink; */
     border-radius: 10px;
     width: 87vw;
     padding-bottom: 2px;
@@ -120,25 +132,23 @@
 .drink-dom {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 17px;
     justify-content: flex-start;
     align-items: flex-start;
-    margin: 21px 16px 16px 16px;
+    margin: 22px 16px 13px 16px;
 
     &>button {
         flex: 1 1 auto;
-        min-width: 63px;
+        min-width: 45px;
         max-width: max-content;
-        color: var(--text-color);
+        font-size: 0.8em;
         background-color: var(--light-gray-menu);
         /* background-color: hotpink; */
         border-radius: 5px;
-        padding: 6px 12px;
-        /* display: inline-flex; */
-        /* justify-content: center; */
-        /* align-items: center; */
+        padding: 7px 11px;
         cursor: pointer;
         white-space: nowrap;
+        text-align: center;
         transition:
             background-color 0.3s ease,
             box-shadow 0.1s ease,
@@ -152,18 +162,14 @@
             box-shadow: 0 0 8px var(--animation-green);
             transform: scale(1.1);
         }
+
+        &:focus-visible {
+            position: relative;
+            outline: 3px solid var(--animation-green);
+            background-color: var(--dark-gray);
+            outline-offset: 1px;
+            border-radius: 5px;
+            transform: scale(1.1);
+        }
     }
 }
-
-/* @media (max-width: 400px) {
-    .sauce-dom > button,
-    .drink-dom > button {
-        min-width: 50px;
-        padding: 4px 8px;
-        font-size: 0.9em;
-    }
-    .sauce-dom,
-    .drink-dom  {
-        gap:15px;
-    }
-} */

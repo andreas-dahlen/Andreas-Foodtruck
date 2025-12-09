@@ -48,10 +48,30 @@ html, body {
     text-align: center;
 }
 
+button {
+    all: unset;
+}
+
 section {
     position: relative;
     width: 100%;
     min-height: 100vh;
+}
+
+.header-spacer {
+    position: relative;
+
+    &>* {
+    position: absolute;
+    background-color: var(--white-ish-cart);
+    border-radius: 5px;
+    padding: 14px;
+    }
+}
+
+.cart {
+    right: 25px;
+    top: 19px;
 }
 
 .menu-style {
@@ -78,7 +98,6 @@ section {
 }
 
 h1 {
-    /* color: hotpink; */
     margin-left: 16px;
     margin-bottom: 9px;
 }
@@ -91,6 +110,6 @@ h1 {
     width: 370px;
     height: auto;
     z-index: 10;
-    opacity: 0.5;
+    opacity: 0.7;
     display: none;
 }

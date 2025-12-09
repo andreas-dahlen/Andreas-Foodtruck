@@ -1,4 +1,4 @@
-import { cart } from "./saveAndApi/saveAndAppend.js"
+import { cart } from "../logic/state.js"
 
 function domCart(itemId) {
     const item = cart.orderList.find(i => i.id === itemId)
@@ -66,7 +66,7 @@ function domCart(itemId) {
     removeCartButton.textContent = 'X'
 
     moreOrLessOrRemove.append(moreOrLess, removeCartButton)
-    
+
     cartBox.append(title, moreOrLessOrRemove)
 
     container.appendChild(cartBox)
