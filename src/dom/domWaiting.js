@@ -3,12 +3,12 @@ import { cart } from "../logic/state.js";
 let timerInterval = null
 let etaSec = 0
 
-function etaTimer(action = 'start') {
+function domEtaTimer(action = 'start') {
     const timerDisplay = document.querySelector('.progress h2')
     const textDisplay = document.querySelector('.progress h1')
 
     if (action == 'start') {
-        const etaRaw = Date.parse(cart.eta) - Date.parse(cart.timestamp)
+        const etaRaw = Date.parse(cart.orderInfo.eta) - Date.parse(cart.orderInfo.timestamp)
         etaSec = Math.floor(etaRaw / 1000)
 
         if (timerInterval) clearInterval(timerInterval)
@@ -42,11 +42,11 @@ function etaTimer(action = 'start') {
     }
 }
 
-function orderNumber() {
+function domOrderNumber() {
     const orderNumber = document.querySelector('.progress p')
-    const receiptNumber = document.querySelector('.receipt-header p')
-    orderNumber.textContent = `#${cart.orderId}`
-    receiptNumber.textContent = `#${cart.orderId}`
+    orderNumber.textContent = `#${cart.orderInfo.orderId}`
+    // const receiptNumber = document.querySelector('.receipt-header p')
+    // receiptNumber.textContent = `#${cart.receiptInfo.receiptId}`
 }
 
-export { etaTimer, orderNumber }
+export { domEtaTimer, domOrderNumber }

@@ -1,12 +1,22 @@
 import { cart } from "./state.js"
 import { showErrorMessage } from "../logic/errorLogic.js"
 
+
+//TODO rename!
 function resetCart() {
-    cart.orderList = []
-    cart.orderId = ''
-    cart.timestamp = ''
-    cart.eta = ''
-    cart.totalPrice = ''
+  cart.orderList = [];
+
+  cart.orderInfo = {
+    orderId: '',
+    timestamp: '',
+    eta: '',
+    totalPrice: ''
+  };
+
+  cart.receiptInfo = {
+    orderId: '',
+    items: []
+  };
 }
 
 function addItemToCart(itemId) {
@@ -33,7 +43,7 @@ function addItemToCart(itemId) {
             quantity: 1
         })
     }
-    cart.totalPrice = cart.orderList.reduce((sum, i) => sum + i.price * i.quantity, 0)
+    cart.orderInfo.totalPrice = cart.orderList.reduce((sum, i) => sum + i.price * i.quantity, 0)
 }
 
 function removeItemFromCart(itemId) {
@@ -43,13 +53,13 @@ function removeItemFromCart(itemId) {
     if (item.quantity <= 0) {
         cart.orderList = cart.orderList.filter(i => i.id !== itemId)
     }
-    cart.totalPrice = cart.orderList.reduce((sum, i) => sum + (i.price * i.quantity), 0)
+    cart.orderInfo.totalPrice = cart.orderList.reduce((sum, i) => sum + (i.price * i.quantity), 0)
 }
 
 function removeWholeItemFromCart(itemId) {
     cart.orderList = cart.orderList.filter(i => i.id !== itemId)
 
-    cart.totalPrice = cart.orderList.reduce(
+    cart.orderInfo.totalPrice = cart.orderList.reduce(
         (sum, i) => sum + (i.price * i.quantity), 
         0
     )

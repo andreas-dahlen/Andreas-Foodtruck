@@ -5,19 +5,16 @@ const cart = {
     tenantName: '',
     menuItems: {},
     orderList: [],
-    orderId: '',
-    timestamp: '',
-    eta: '',
-    totalPrice: '',
-
-    //this should replace orderId, timestamp, eta and totalPrice
-    orderInfo: {},
-    receiptInfo: {
+    orderInfo: {
         orderId: '',
+        timestamp: '',
+        eta: '',
+        totalPrice: ''
+        },
+    receiptInfo: {
+        receiptId: '',
         items: []
     }
 }
-
-//TODO: could create a saveorderId but probably not
 
 export { cart }

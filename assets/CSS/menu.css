@@ -137,6 +137,7 @@
     align-items: flex-start;
     margin: 22px 16px 13px 16px;
 
+    /* button that adds a drink/sauce to basket */
     &>button {
         flex: 1 1 auto;
         min-width: 45px;

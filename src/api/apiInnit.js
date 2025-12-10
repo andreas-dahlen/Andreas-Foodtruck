@@ -3,7 +3,7 @@ import { cart } from "../logic/state.js";
 
 async function getApiKey() {
     try {
-        const response = await fetch(`${cart.api}/keys`, {
+        const response = await fetch(`${cart.api}keys`, {
             method: 'POST',
         });
         const data = await response.json()
@@ -16,7 +16,7 @@ async function getApiKey() {
 
 async function getApiTenant() {
     try {
-        const response = await fetch(`${cart.api}/tenants`, {
+        const response = await fetch(`${cart.api}tenants`, {
             method: 'POST',
             headers: {
                 'accept': 'application/json',
@@ -36,9 +36,9 @@ async function getApiTenant() {
     }
 }
 
-async function getApiMenuItems() {
+async function getApiMenu() {
     try {
-        const response = await fetch(`${cart.api}/menu`, {
+        const response = await fetch(`${cart.api}menu`, {
             headers: {
                 'x-zocom': cart.key,
                 'accept': 'application/json'
@@ -85,9 +85,9 @@ function menuSort(data) {
 
 async function initApi() {
     try {
-        await getApiKey();
-        await getApiMenuItems()
-        await getApiTenant();
+        await getApiKey()
+        await getApiMenu()
+        await getApiTenant()
 
     } catch (error) {
         console.error('API initialization failed', error.message)
