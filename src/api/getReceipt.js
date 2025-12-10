@@ -2,7 +2,7 @@ import { cart } from '../logic/state.js'
 
 async function getReceipt() {
     try {
-        const response = await fetch(`${cart.api}/receipts/${cart.orderId}`, {
+        const response = await fetch(`${cart.api}receipts/${cart.orderInfo.orderId}`, {
             headers: {
                 'accept': 'application/json',
                 'x-zocom': cart.key,

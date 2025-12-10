@@ -2,15 +2,23 @@ import { showSection } from "./transitions.js";
 import { showErrorMessage } from "../logic/errorLogic.js";
 import { cart } from "../logic/state.js";
     
-import{ resetCart, addItemToCart, removeItemFromCart, removeWholeItemFromCart } from "../logic/stateLogic.js";
-import { sendOrder} from "../api/placeOrder.js";
+import{ 
+    resetCart, 
+    addItemToCart, 
+    removeItemFromCart, 
+    removeWholeItemFromCart } from "../logic/stateLogic.js";
+import { getOrder} from "../api/placeOrder.js";
 import { getReceipt } from "../api/getReceipt.js";
-import { domCart, domPrice, removeDomCart, removeWholeDomCart } from "../dom/domCart.js";
-import { cartCounter } from "../dom/domMenu.js"
-import { etaTimer, orderNumber } from "../dom/domWaiting.js";
+import { decreaseCartItemDom, 
+    generateCartDom, 
+    removeCartItemTypeDom, 
+    resetCartDom, 
+    updatePriceDom} from "../dom/domCart.js";
+import { domCartCounter } from "../dom/domMenu.js"
+import { domEtaTimer, domOrderNumber } from "../dom/domWaiting.js";
 
 
-function showMenuButtons() {
+function toggleMenuButtons() {
     const buttons = document.querySelectorAll('.to-menu')
     buttons.forEach(button => {
         button.addEventListener('click', () => {
@@ -19,18 +27,22 @@ function showMenuButtons() {
     })
 }
 
-function showMenuNewOrderButtons() {
+function toggleNewOrderButtons() {
     const buttons = document.querySelectorAll('.new-order')
     buttons.forEach(button => {
         button.addEventListener('click', () => {
             resetCart()
+            resetCartDom()
             showSection('menu')
-            cartCounter()
+            domCartCounter()
         })
     })
 }
 
-function showCartButtons() {
+/**
+ * Adds event listeners to all buttons that show the cart view.
+ */
+function toggleCartButtons() {
     const buttons = document.querySelectorAll('.cart-button')
     buttons.forEach(button => {
         button.addEventListener('click', () => {
@@ -42,8 +54,8 @@ function showCartButtons() {
         })
     })
 }
-
-function menuItemButtons() {
+//TODO: rename functions, make some javadoc comments, change remove button color, make cart button to go back to menu, vagnen är tom?, bug med vagnen reset, DEL, varningsTextMedelande när vagnen är tom /**, 
+function menuButtonsAction() {
     const targets = ['.menu-dom', '.drink-dom', '.sauce-dom']
 
     targets.forEach(domPlace => {
@@ -56,15 +68,14 @@ function menuItemButtons() {
 
             const itemId = Number(box.dataset.id)
             addItemToCart(itemId)
-            domCart(itemId)
-            domPrice()
-            cartCounter()
-
+            generateCartDom(itemId)
+            updatePriceDom()
+            domCartCounter()
         })
     })
 }
 
-function cartButtons() {
+function cartButtonsAction() {
     const cartDom = document.querySelector('.cart-dom')
     if (!cartDom) return
 
@@ -77,13 +88,13 @@ function cartButtons() {
             const itemId = Number(e.target.dataset.id)
             if (!itemId) return
             addItemToCart(itemId)
-            domCart(itemId)
+            generateCartDom(itemId)
         }
         else if (less) {
             const itemId = Number(e.target.dataset.id)
             if (!itemId) return
             removeItemFromCart(itemId)
-            removeDomCart(itemId)
+            decreaseCartItemDom(itemId)
             if (cart.orderList.length === 0) {
                 showSection('menu')
             }
@@ -92,27 +103,27 @@ function cartButtons() {
             const itemId = Number(e.target.dataset.id)
             if (!itemId) return
             removeWholeItemFromCart(itemId)
-            removeWholeDomCart(itemId)
+            removeCartItemTypeDom(itemId)
             if (cart.orderList.length === 0) {
                 showSection('menu')
             }
         }
 
-        domPrice()
-        cartCounter()
+        updatePriceDom()
+        domCartCounter()
     })
 }
 
-function orderButton() {
+function orderButtonAction() {
     const button = document.querySelector('#takeMoney')
     button.addEventListener('click', async () => {
         showSection('loading')
         button.disabled = true
 
         try {
-            await sendOrder()
-            etaTimer('start')
-            orderNumber()
+            await getOrder()
+            domEtaTimer('start')
+            domOrderNumber()
             showSection('waiting')
         } catch (error) {
             showErrorMessage('order')
@@ -123,7 +134,7 @@ function orderButton() {
     })
 }
 
-function receiptButton() {
+function receiptButtonAction() {
     const button = document.querySelector('.open-receipt')
     button.addEventListener('click', async () => {
         showSection('loading')
@@ -143,11 +154,11 @@ function receiptButton() {
 
 
 export {
-    menuItemButtons,
-    showCartButtons,
-    orderButton,
-    showMenuButtons,
-    cartButtons,
-    showMenuNewOrderButtons,
-    receiptButton
+    toggleMenuButtons,
+    toggleNewOrderButtons,
+    toggleCartButtons,
+    menuButtonsAction,
+    cartButtonsAction,
+    orderButtonAction,
+    receiptButtonAction
 }

@@ -51,9 +51,10 @@ function domMenu() {
     cart.menuItems.drinks.forEach(item => makeDipAndDrink(item, '.drink-dom'))
 }
 
-function cartCounter() {
+//TODO: THIS IS NOT A BUTTON... MOVE TO CARTDOM
+function domCartCounter() {
     const totalQuantity = cart.orderList.reduce((sum, item) => sum + item.quantity, 0)
     document.querySelector('.amount-in-cart').textContent = totalQuantity
 }
 
-export { domMenu, cartCounter }
+export { domMenu, domCartCounter }
