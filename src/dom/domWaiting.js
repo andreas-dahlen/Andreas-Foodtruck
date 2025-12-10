@@ -1,14 +1,15 @@
-import { cart } from "../logic/state.js";
+import { appState } from "../state/appState.js";
 
 let timerInterval = null
 let etaSec = 0
 
-function domEtaTimer(action = 'start') {
+/** !WAITING! shows duration left until the food is ready in the dom tree*/
+function etaTimerDom(action = 'start') {
     const timerDisplay = document.querySelector('.progress h2')
     const textDisplay = document.querySelector('.progress h1')
 
     if (action == 'start') {
-        const etaRaw = Date.parse(cart.orderInfo.eta) - Date.parse(cart.orderInfo.timestamp)
+        const etaRaw = Date.parse(appState.orderInfo.eta) - Date.parse(appState.orderInfo.timestamp)
         etaSec = Math.floor(etaRaw / 1000)
 
         if (timerInterval) clearInterval(timerInterval)
@@ -42,11 +43,12 @@ function domEtaTimer(action = 'start') {
     }
 }
 
-function domOrderNumber() {
+/** !WAITING! shows the order ID in the dom tree*/
+function orderIdDom() {
     const orderNumber = document.querySelector('.progress p')
-    orderNumber.textContent = `#${cart.orderInfo.orderId}`
+    orderNumber.textContent = `#${appState.orderInfo.orderId}`
     // const receiptNumber = document.querySelector('.receipt-header p')
-    // receiptNumber.textContent = `#${cart.receiptInfo.receiptId}`
+    // receiptNumber.textContent = `#${appState.receiptInfo.receiptId}`
 }
 
-export { domEtaTimer, domOrderNumber }
+export { etaTimerDom, orderIdDom }

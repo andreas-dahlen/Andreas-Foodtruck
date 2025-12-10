@@ -1,4 +1,4 @@
-const cart = {
+const appState = {
     api: 'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/',
     key: '',
     tenantID: '',
@@ -13,8 +13,9 @@ const cart = {
         },
     receiptInfo: {
         receiptId: '',
-        items: []
+        items: [],
+        orderValue: ''
     }
 }
 
-export { cart }
+export { appState }

@@ -1,7 +1,7 @@
 import { 
-    toggleMenuButtons,
-    toggleNewOrderButtons,
-    toggleCartButtons,
+    toggleMenuButton,
+    startNewOrderButtons,
+    toggleCartButton,
     menuButtonsAction,
     cartButtonsAction,
     orderButtonAction,
@@ -17,9 +17,9 @@ async function initLoad() {
     generateMenuDom()
     showSection('menu')
 
-    toggleMenuButtons(),
-    toggleNewOrderButtons(),
-    toggleCartButtons(),
+    toggleMenuButton(),
+    startNewOrderButtons(),
+    toggleCartButton(),
 
     menuButtonsAction(),
     cartButtonsAction(),

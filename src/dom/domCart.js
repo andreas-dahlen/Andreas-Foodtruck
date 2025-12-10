@@ -1,7 +1,8 @@
-import { cart } from "../logic/state.js"
+import { appState } from "../state/appState.js"
 
+/** !CART! Puts an item in the DOM tree*/
 function generateCartDom(itemId) {
-    const item = cart.orderList.find(i => i.id === itemId)
+    const item = appState.orderList.find(i => i.id === itemId)
     if (!item) return
     
     const containerMap = {
@@ -69,15 +70,9 @@ function generateCartDom(itemId) {
     container.appendChild(cartBox)
 }
 
-function updatePriceDom() {
-    const costElement = document.querySelectorAll('.cost')
-    costElement.forEach(element => {
-        element.textContent = `${cart.orderInfo.totalPrice} SEK`
-    })
-}
-
+/** !CART! Reduces the quantity of an item by one, in the DOM tree */
 function decreaseCartItemDom (itemId) {
-    const item = cart.orderList.find(i => i.id === itemId)
+    const item = appState.orderList.find(i => i.id === itemId)
     
     const placement = document.querySelector(`.cart-boxes[data-id="${itemId}"]`)
     if (!placement) return
@@ -91,19 +86,30 @@ function decreaseCartItemDom (itemId) {
     quantity.textContent = `${item.quantity} Stycken`
 }
 
-function removeCartItemTypeDom (itemId) {
-    // const item = cart.orderList.find(i => i.id === itemId)
+/** !CART! Removes an entier item from the DOM tree */
+function removeCartItemDom (itemId) {
     
     const placement = document.querySelector(`.cart-boxes[data-id="${itemId}"]`)
     if (!placement) return
     placement.remove()
 }
 
+/** !CART! Removes ALL items from the DOM tree */
 function resetCartDom() {
     const placement = document.querySelectorAll('.cart-boxes')
+    if (!placement) return
     placement.forEach(box => box.remove())
 }
 
+/** !CART! updates the total price in the DOM tree */
+function updateTotalPriceCartDom() {
+    const costElement = document.querySelector('.cost-cart')
+    costElement.textContent = `${appState.orderInfo.totalPrice} SEK`
+}
 
-
-export { generateCartDom, updatePriceDom, resetCartDom, decreaseCartItemDom, removeCartItemTypeDom }
+export { 
+    generateCartDom, 
+    updateTotalPriceCartDom, 
+    resetCartDom, 
+    decreaseCartItemDom, 
+    removeCartItemDom }
