@@ -12,6 +12,7 @@ async function getReceipt() {
 
         const data = await response.json()
         console.log(data)
+        //TODO: remove console log
     } catch (error) {
         console.error('receipt error: ', error.message)
         showErrorMessage('receipt')

@@ -1,13 +1,13 @@
-import { showSection } from "./transitions.js";
-import { showErrorMessage } from "../logic/errorLogic.js";
 import { cart } from "../logic/state.js";
-    
 import{ 
     resetCart, 
     addItemToCart, 
     removeItemFromCart, 
     removeWholeItemFromCart } from "../logic/stateLogic.js";
-import { getOrder} from "../api/placeOrder.js";
+import { showSection } from "./transitions.js";
+import { showErrorMessage } from "../logic/errorLogic.js";
+    
+import { getOrder} from "../api/getOrder.js";
 import { getReceipt } from "../api/getReceipt.js";
 import { decreaseCartItemDom, 
     generateCartDom, 
@@ -71,6 +71,7 @@ function menuButtonsAction() {
             generateCartDom(itemId)
             updatePriceDom()
             domCartCounter()
+            
         })
     })
 }

@@ -100,7 +100,8 @@ function removeCartItemTypeDom (itemId) {
 }
 
 function resetCartDom() {
-    
+    const placement = document.querySelectorAll('.cart-boxes')
+    placement.forEach(box => box.remove())
 }
 
 
