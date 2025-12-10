@@ -1,40 +1,43 @@
+import { appState } from "../state/appState.js";
+import {
+    resetAppState,
+    addItemToOrderList,
+    reduceOrderItemQuantity,
+    removeItemFromOrderList
+} from "../state/appStateMod.js";
+import { showErrorMessage } from "../state/errorMessage.js";
 import { showSection } from "./transitions.js";
-import { showErrorMessage } from "../logic/errorLogic.js";
-import { cart } from "../logic/state.js";
-    
-import{ 
-    resetCart, 
-    addItemToCart, 
-    removeItemFromCart, 
-    removeWholeItemFromCart } from "../logic/stateLogic.js";
-import { getOrder} from "../api/placeOrder.js";
+
+import { getOrder } from "../api/getOrder.js";
 import { getReceipt } from "../api/getReceipt.js";
-import { decreaseCartItemDom, 
-    generateCartDom, 
-    removeCartItemTypeDom, 
-    resetCartDom, 
-    updatePriceDom} from "../dom/domCart.js";
-import { domCartCounter } from "../dom/domMenu.js"
-import { domEtaTimer, domOrderNumber } from "../dom/domWaiting.js";
 
+import {
+    decreaseCartItemDom,
+    generateCartDom,
+    removeCartItemDom,
+    resetCartDom,
+    updateTotalPriceCartDom
+} from "../dom/domCart.js";
+import { updateCartCounterDom } from "../dom/domMenu.js";
+import { etaTimerDom, orderIdDom } from "../dom/domWaiting.js";
 
-function toggleMenuButtons() {
-    const buttons = document.querySelectorAll('.to-menu')
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            showSection('menu')
-        })
+/** !BUTTON! adds click in cart section to go to menu section */
+function toggleMenuButton() {
+    const button = document.querySelector('.to-menu')
+    button.addEventListener('click', () => {
+        showSection('menu')
     })
 }
 
-function toggleNewOrderButtons() {
+/** !BUTTON! adds click in waiting and  section to go to menu section */
+function startNewOrderButtons() {
     const buttons = document.querySelectorAll('.new-order')
     buttons.forEach(button => {
         button.addEventListener('click', () => {
-            resetCart()
+            resetAppState()
             resetCartDom()
             showSection('menu')
-            domCartCounter()
+            updateCartCounterDom()
         })
     })
 }
@@ -42,16 +45,14 @@ function toggleNewOrderButtons() {
 /**
  * Adds event listeners to all buttons that show the cart view.
  */
-function toggleCartButtons() {
-    const buttons = document.querySelectorAll('.cart-button')
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            if (cart.orderList.length === 0) {
-                showErrorMessage('empty')
-                return
-            }
-            showSection('cart')
-        })
+function toggleCartButton() {
+    const button = document.querySelector('.cart-button')
+    button.addEventListener('click', () => {
+        if (appState.orderList.length === 0) {
+            showErrorMessage('empty')
+            return
+        }
+        showSection('cart')
     })
 }
 //TODO: rename functions, make some javadoc comments, change remove button color, make cart button to go back to menu, vagnen är tom?, bug med vagnen reset, DEL, varningsTextMedelande när vagnen är tom /**, 
@@ -67,10 +68,11 @@ function menuButtonsAction() {
             if (!box) return
 
             const itemId = Number(box.dataset.id)
-            addItemToCart(itemId)
+            addItemToOrderList(itemId)
             generateCartDom(itemId)
-            updatePriceDom()
-            domCartCounter()
+            updateTotalPriceCartDom()
+            updateCartCounterDom()
+
         })
     })
 }
@@ -87,30 +89,30 @@ function cartButtonsAction() {
         if (more) {
             const itemId = Number(e.target.dataset.id)
             if (!itemId) return
-            addItemToCart(itemId)
+            addItemToOrderList(itemId)
             generateCartDom(itemId)
         }
         else if (less) {
             const itemId = Number(e.target.dataset.id)
             if (!itemId) return
-            removeItemFromCart(itemId)
+            reduceOrderItemQuantity(itemId)
             decreaseCartItemDom(itemId)
-            if (cart.orderList.length === 0) {
+            if (appState.orderList.length === 0) {
                 showSection('menu')
             }
         }
         else if (remove) {
             const itemId = Number(e.target.dataset.id)
             if (!itemId) return
-            removeWholeItemFromCart(itemId)
-            removeCartItemTypeDom(itemId)
-            if (cart.orderList.length === 0) {
+            removeItemFromOrderList(itemId)
+            removeCartItemDom(itemId)
+            if (appState.orderList.length === 0) {
                 showSection('menu')
             }
         }
 
-        updatePriceDom()
-        domCartCounter()
+        updateTotalPriceCartDom()
+        updateCartCounterDom()
     })
 }
 
@@ -122,8 +124,8 @@ function orderButtonAction() {
 
         try {
             await getOrder()
-            domEtaTimer('start')
-            domOrderNumber()
+            etaTimerDom('start')
+            orderIdDom()
             showSection('waiting')
         } catch (error) {
             showErrorMessage('order')
@@ -152,11 +154,10 @@ function receiptButtonAction() {
     })
 }
 
-
 export {
-    toggleMenuButtons,
-    toggleNewOrderButtons,
-    toggleCartButtons,
+    toggleMenuButton,
+    startNewOrderButtons,
+    toggleCartButton,
     menuButtonsAction,
     cartButtonsAction,
     orderButtonAction,

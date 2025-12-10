@@ -1,13 +1,13 @@
-import { showErrorMessage } from "../logic/errorLogic.js";
-import { cart } from "../logic/state.js";
+import { showErrorMessage } from "../state/errorMessage.js";
+import { appState } from "../state/appState.js";
 
 async function getApiKey() {
     try {
-        const response = await fetch(`${cart.api}keys`, {
+        const response = await fetch(`${appState.api}keys`, {
             method: 'POST',
         });
         const data = await response.json()
-        cart.key = data.key
+        appState.key = data.key
     } catch (error) {
         showErrorMessage('key')
         console.error('no key found', error.message)
@@ -16,11 +16,11 @@ async function getApiKey() {
 
 async function getApiTenant() {
     try {
-        const response = await fetch(`${cart.api}tenants`, {
+        const response = await fetch(`${appState.api}tenants`, {
             method: 'POST',
             headers: {
                 'accept': 'application/json',
-                'x-zocom': cart.key,
+                'x-zocom': appState.key,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -28,8 +28,8 @@ async function getApiTenant() {
             })
         })
         const data = await response.json()
-        cart.tenantName = data.name
-        cart.tenantID = data.id
+        appState.tenantName = data.name
+        appState.tenantID = data.id
     } catch (error) {
         showErrorMessage('tenant')
         console.error('tenant error: ', error.message)
@@ -38,9 +38,9 @@ async function getApiTenant() {
 
 async function getApiMenu() {
     try {
-        const response = await fetch(`${cart.api}menu`, {
+        const response = await fetch(`${appState.api}menu`, {
             headers: {
-                'x-zocom': cart.key,
+                'x-zocom': appState.key,
                 'accept': 'application/json'
             }
         })
@@ -62,21 +62,21 @@ function cleanItemName(item) {
 
 function menuSort(data) {
 
-    cart.menuItems = {
+    appState.menuItems = {
         wontons: data.filter(item => item.type === "wonton"),
         dips: data.filter(item => item.type === "dip").map(cleanItemName),
         drinks: data.filter(item => item.type === "drink").map(cleanItemName)
     }
 
     const dipOrder = [6, 9, 7, 10, 11, 8];
-    cart.menuItems.dips.sort((a, b) => {
+    appState.menuItems.dips.sort((a, b) => {
         const aIndex = dipOrder.indexOf(a.id);
         const bIndex = dipOrder.indexOf(b.id);
         return (aIndex === -1 ? Infinity : aIndex) - (bIndex === -1 ? Infinity : bIndex);
     });
 
     const drinkOrder = [13, 14, 15, 12, 17, 16];
-    cart.menuItems.drinks.sort((a, b) => {
+    appState.menuItems.drinks.sort((a, b) => {
         const aIndex = drinkOrder.indexOf(a.id);
         const bIndex = drinkOrder.indexOf(b.id);
         return (aIndex === -1 ? Infinity : aIndex) - (bIndex === -1 ? Infinity : bIndex);

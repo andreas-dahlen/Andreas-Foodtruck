@@ -1,7 +1,8 @@
-import { showErrorMessage } from '../logic/errorLogic.js'
-import { cart } from '../logic/state.js'
+import { showErrorMessage } from '../state/errorMessage.js'
+import { appState } from '../state/appState.js'
 
-function makeWonton(item) {
+/** !MENU! Puts a wonton in the DOM tree*/
+function generateWonton(item) {
     const foodBox = document.createElement('button')
     foodBox.classList.add('food-boxes')
     foodBox.dataset.id = item.id
@@ -29,7 +30,8 @@ function makeWonton(item) {
     document.querySelector('.menu-dom').appendChild(foodBox)
 }
 
-function makeDipAndDrink(item, target) {
+/** !MENU! Puts a dip or drink in the DOM tree*/
+function generateDipAndDrink(item, target) {
     const button = document.createElement('button')
     button.dataset.id = item.id
     button.textContent = item.name;
@@ -37,24 +39,25 @@ function makeDipAndDrink(item, target) {
     document.querySelector(target).appendChild(button)
 }
 
-function domMenu() {
+/** !MENU! Populates the whole DOM tree*/
+function generateMenuDom() {
 
-    if (!cart.menuItems) {
+    if (!appState.menuItems) {
         showErrorMessage('menuEmpty')
         return
     }
 
-    cart.menuItems.wontons.forEach(makeWonton)
+    appState.menuItems.wontons.forEach(generateWonton)
 
-    cart.menuItems.dips.forEach(item => makeDipAndDrink(item, '.sauce-dom'))
+    appState.menuItems.dips.forEach(item => generateDipAndDrink(item, '.sauce-dom'))
 
-    cart.menuItems.drinks.forEach(item => makeDipAndDrink(item, '.drink-dom'))
+    appState.menuItems.drinks.forEach(item => generateDipAndDrink(item, '.drink-dom'))
 }
 
-//TODO: THIS IS NOT A BUTTON... MOVE TO CARTDOM
-function domCartCounter() {
-    const totalQuantity = cart.orderList.reduce((sum, item) => sum + item.quantity, 0)
+/** !MENU!  */
+function updateCartCounterDom() {
+    const totalQuantity = appState.orderList.reduce((sum, item) => sum + item.quantity, 0)
     document.querySelector('.amount-in-cart').textContent = totalQuantity
 }
 
-export { domMenu, domCartCounter }
+export { generateMenuDom, updateCartCounterDom }

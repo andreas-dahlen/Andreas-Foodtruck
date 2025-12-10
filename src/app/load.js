@@ -1,25 +1,26 @@
 import { 
-    toggleMenuButtons,
-    toggleNewOrderButtons,
-    toggleCartButtons,
+    toggleMenuButton,
+    startNewOrderButtons,
+    toggleCartButton,
     menuButtonsAction,
     cartButtonsAction,
     orderButtonAction,
     receiptButtonAction
 } from "../ui/buttons.js";
 import { initApi } from "../api/apiInnit.js";
-import { domMenu } from '../dom/domMenu.js';
+import { generateMenuDom } from '../dom/domMenu.js';
 import { showSection } from "../ui/transitions.js";
 
 async function initLoad() {
     showSection('loading')
     await initApi()
-    domMenu()
+    generateMenuDom()
     showSection('menu')
 
-    toggleMenuButtons(),
-    toggleNewOrderButtons(),
-    toggleCartButtons(),
+    toggleMenuButton(),
+    startNewOrderButtons(),
+    toggleCartButton(),
+
     menuButtonsAction(),
     cartButtonsAction(),
     orderButtonAction(),
