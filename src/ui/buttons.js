@@ -21,7 +21,7 @@ import {
 import { updateCartCounterDom } from "../dom/domMenu.js";
 import { etaTimerDom, orderIdDom } from "../dom/domWaiting.js";
 
-/** !BUTTON! adds click in cart section to go to menu section */
+/** !BUTTON! adds an eventListener 'click' in cart section to go to menu section */
 function toggleMenuButton() {
     const button = document.querySelector('.to-menu')
     button.addEventListener('click', () => {
@@ -29,7 +29,7 @@ function toggleMenuButton() {
     })
 }
 
-/** !BUTTON! adds click in waiting and  section to go to menu section */
+/** !BUTTON! adds eventListeners 'click' in waiting and cart section to go to menu section - resets app to entry values */
 function startNewOrderButtons() {
     const buttons = document.querySelectorAll('.new-order')
     buttons.forEach(button => {
@@ -42,9 +42,7 @@ function startNewOrderButtons() {
     })
 }
 
-/**
- * Adds event listeners to all buttons that show the cart view.
- */
+/** Adds an eventListener 'click' in menu to go to cart section */
 function toggleCartButton() {
     const button = document.querySelector('.cart-button')
     button.addEventListener('click', () => {
@@ -55,7 +53,8 @@ function toggleCartButton() {
         showSection('cart')
     })
 }
-//TODO: rename functions, make some javadoc comments, change remove button color, make cart button to go back to menu, vagnen är tom?, bug med vagnen reset, DEL, varningsTextMedelande när vagnen är tom /**, 
+
+/** adds eventListeners 'click' in menu that adds and updates appState and display*/
 function menuButtonsAction() {
     const targets = ['.menu-dom', '.drink-dom', '.sauce-dom']
 
@@ -77,6 +76,7 @@ function menuButtonsAction() {
     })
 }
 
+/** adds eventListeners 'click' in cart that adds and updates appState and display +, -, X*/
 function cartButtonsAction() {
     const cartDom = document.querySelector('.cart-dom')
     if (!cartDom) return
@@ -116,6 +116,7 @@ function cartButtonsAction() {
     })
 }
 
+/** adds eventListener 'click' to go to waiting section and fetches order and updates appState */
 function orderButtonAction() {
     const button = document.querySelector('#takeMoney')
     button.addEventListener('click', async () => {
@@ -136,6 +137,7 @@ function orderButtonAction() {
     })
 }
 
+/** adds eventListener 'click' to go to receipt section and fetches receipt and updates appState */
 function receiptButtonAction() {
     const button = document.querySelector('.open-receipt')
     button.addEventListener('click', async () => {
