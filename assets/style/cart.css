@@ -110,8 +110,6 @@
 }
 
 .remove-cart-button {
-    background-color: var(--dark-gray);
-    color: var(--light-gray);
     margin-right: 22px;
     font-size: 1em;
     font-weight: bold;
