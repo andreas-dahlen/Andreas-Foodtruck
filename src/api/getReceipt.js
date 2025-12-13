@@ -11,13 +11,13 @@ async function getReceipt() {
         })
 
         const data = await response.json()
-        console.log(data)
-        //TODO: remove console log
+
         appState.receiptInfo.receiptId = data.receipt.id
         appState.receiptInfo.items = data.receipt.items
         appState.receiptInfo.orderValue = data.receipt.orderValue
 
         console.log(appState)
+        //TODO remove console.log
 
     } catch (error) {
         console.error('receipt error: ', error.message)

@@ -24,8 +24,7 @@ async function getOrder() {
         appState.orderInfo.orderId = data.order.id
         appState.orderInfo.timestamp = data.order.timestamp
         appState.orderInfo.eta = data.order.eta
-        console.log(data)
-        //TODO: remove console log
+
     } catch (error) {
         console.error('ordering error: ', error.message)
         showErrorMessage('order')
