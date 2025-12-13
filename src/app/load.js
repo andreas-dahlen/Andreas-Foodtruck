@@ -5,7 +5,8 @@ import {
     menuButtonsAction,
     cartButtonsAction,
     orderButtonAction,
-    receiptButtonAction
+    receiptButtonAction,
+    errorExit
 } from "../ui/buttons.js";
 import { initApi } from "../api/apiInnit.js";
 import { generateMenuDom } from '../dom/domMenu.js';
@@ -24,7 +25,8 @@ async function initLoad() {
     menuButtonsAction(),
     cartButtonsAction(),
     orderButtonAction(),
-    receiptButtonAction()
+    receiptButtonAction(),
+    errorExit()
 }
 
 export { initLoad }

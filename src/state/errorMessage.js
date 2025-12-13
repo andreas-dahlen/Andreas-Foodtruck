@@ -1,5 +1,7 @@
-function showErrorMessage(type) {
-    const placement = document.querySelectorAll('.global-error-message')
+import { showErrorSection } from "../ui/transitions.js"
+
+function errorMessage(type) {
+    const msgPlacement = document.querySelector('.error-text')
     const messages = {
         empty: 'Din korg är tom\nlägg till varor',
         key: 'Anslutningsfel\nförsök igen senare',
@@ -14,13 +16,9 @@ function showErrorMessage(type) {
     }
 
     const output = messages[type] || messages.default
+    msgPlacement.textContent = output
 
-    placement.forEach(place => {
-        place.textContent = output
-        place.classList.remove('hidden')
-
-        setTimeout(() => place.classList.add('hidden'), 2500)
-    })
+    showErrorSection()
 }
 
-export { showErrorMessage }
+export { errorMessage }

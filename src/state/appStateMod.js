@@ -1,5 +1,5 @@
 import { appState } from "./appState.js"
-import { showErrorMessage } from "./errorMessage.js"
+import { errorMessage } from "./errorMessage.js"
 
 
 /** !STATE! resets order and receipt information */
@@ -28,7 +28,7 @@ function addItemToOrderList(itemId) {
     })
     if (!item) {
         console.warn('Item not found:', itemId)
-        showErrorMessage('itemNotFound')
+        errorMessage('itemNotFound')
         return
     }
 

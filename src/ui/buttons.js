@@ -5,7 +5,7 @@ import {
     reduceOrderItemQuantity,
     removeItemFromOrderList
 } from "../state/appStateMod.js";
-import { showErrorMessage } from "../state/errorMessage.js";
+import { errorMessage } from "../state/errorMessage.js";
 import { showSection } from "./transitions.js";
 
 import { getOrder } from "../api/getOrder.js";
@@ -43,7 +43,7 @@ function toggleCartButton() {
     const button = document.querySelector('.cart-button')
     button.addEventListener('click', () => {
         if (appState.orderList.length === 0) {
-            showErrorMessage('empty')
+            errorMessage('empty')
             return
         }
         showSection('cart')
@@ -122,7 +122,7 @@ function orderButtonAction() {
             orderIdDom()
             showSection('waiting')
         } catch (error) {
-            showErrorMessage('order')
+            errorMessage('order')
             showSection('cart')
         } finally {
             button.disabled = false
@@ -142,12 +142,24 @@ function receiptButtonAction() {
             updateReceiptDom()
             showSection('receipt')
         } catch (error) {
-            showErrorMessage('receipt')
+            errorMessage('receipt')
             showSection('waiting')
         } finally {
             button.disabled = false
         }
     })
+}
+
+function errorExit() {
+    const overlay = document.querySelector('.global-error-message')
+    overlay.addEventListener('click', () => {
+    overlay.classList.remove('visible');
+     })
+
+     document.addEventListener('keydown', esc => {
+        if (esc.key === 'Escape') 
+            overlay.classList.remove('visible')
+     })
 }
 
 export {
@@ -157,5 +169,6 @@ export {
     menuButtonsAction,
     cartButtonsAction,
     orderButtonAction,
-    receiptButtonAction
+    receiptButtonAction,
+    errorExit
 }

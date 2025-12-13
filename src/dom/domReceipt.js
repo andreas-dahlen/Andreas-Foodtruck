@@ -1,5 +1,5 @@
 import { appState } from "../state/appState.js"
-import { showErrorMessage } from "../state/errorMessage.js"
+import { errorMessage } from "../state/errorMessage.js"
 
 function generateReceiptItemDom(itemId) {
     const item = appState.receiptInfo.items.find(i => i.id === itemId)
@@ -52,7 +52,7 @@ function updateReceiptDom() {
     const items = appState.receiptInfo.items
 
     if (!items || items.length === 0) {
-        showErrorMessage('menuOrReceiptEmpty')
+        errorMessage('menuOrReceiptEmpty')
         return
     }
     items.forEach(item => generateReceiptItemDom(item.id))

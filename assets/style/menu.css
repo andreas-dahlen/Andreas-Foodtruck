@@ -24,7 +24,7 @@
 
 .amount-in-cart {
     position: absolute;
-    background-color: rgb(255, 102, 117);
+    background-color: var(--red);
     width: 23px;
     height: 23px;
     border-radius: 100px;

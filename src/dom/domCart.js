@@ -1,5 +1,5 @@
 import { appState } from "../state/appState.js"
-import { showErrorMessage } from "../state/errorMessage.js"
+import { errorMessage } from "../state/errorMessage.js"
 
 /** !CART! Puts an item in the DOM tree*/
 function generateCartDom(item) {
@@ -11,7 +11,7 @@ function generateCartDom(item) {
     }
     const container = containerMap[item.type]
     if (!container) {
-        showErrorMessage('itemNotFound')
+        errorMessage('itemNotFound')
         return
     }
 
@@ -96,7 +96,7 @@ function syncCartDom(item) {
     
     const placement = document.querySelector(`.cart-boxes[data-id="${item.id}"]`)
     if (!placement) {
-        showErrorMessage('default')   
+        errorMessage('default')   
         return
     }
     const quantity = placement.querySelector('.amount-of-type')

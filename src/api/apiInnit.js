@@ -1,4 +1,4 @@
-import { showErrorMessage } from "../state/errorMessage.js";
+import { errorMessage } from "../state/errorMessage.js";
 import { appState } from "../state/appState.js";
 
 async function getApiKey() {
@@ -9,7 +9,7 @@ async function getApiKey() {
         const data = await response.json()
         appState.key = data.key
     } catch (error) {
-        showErrorMessage('key')
+        errorMessage('key')
         console.error('no key found', error.message)
     }
 }
@@ -31,7 +31,7 @@ async function getApiTenant() {
         appState.tenantName = data.name
         appState.tenantID = data.id
     } catch (error) {
-        showErrorMessage('tenant')
+        errorMessage('tenant')
         console.error('tenant error: ', error.message)
     }
 }
@@ -48,7 +48,7 @@ async function getApiMenu() {
         const data = await response.json()
         menuSort(data.items)
     } catch (error) {
-        showErrorMessage('menu')
+        errorMessage('menu')
         console.error('failed to catch menu items:', error.message)
     }
 }
@@ -91,7 +91,7 @@ async function initApi() {
 
     } catch (error) {
         console.error('API initialization failed', error.message)
-        showErrorMessage('API')
+        errorMessage('API')
     }
 }
 
