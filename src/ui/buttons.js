@@ -11,15 +11,10 @@ import { showSection } from "./transitions.js";
 import { getOrder } from "../api/getOrder.js";
 import { getReceipt } from "../api/getReceipt.js";
 
-import {
-    decreaseCartItemDom,
-    generateCartDom,
-    removeCartItemDom,
-    resetCartDom,
-    updateTotalPriceCartDom
-} from "../dom/domCart.js";
+import {updateCartDom, removeCartItemDom, resetCartDom} from "../dom/domCart.js";
 import { updateCartCounterDom } from "../dom/domMenu.js";
 import { etaTimerDom, orderIdDom } from "../dom/domWaiting.js";
+import { updateReceiptDom, resetReceiptDom } from "../dom/domReceipt.js";
 
 /** !BUTTON! adds an eventListener 'click' in cart section to go to menu section */
 function toggleMenuButton() {
@@ -36,6 +31,7 @@ function startNewOrderButtons() {
         button.addEventListener('click', () => {
             resetAppState()
             resetCartDom()
+            resetReceiptDom()
             showSection('menu')
             updateCartCounterDom()
         })
@@ -68,8 +64,7 @@ function menuButtonsAction() {
 
             const itemId = Number(box.dataset.id)
             addItemToOrderList(itemId)
-            generateCartDom(itemId)
-            updateTotalPriceCartDom()
+            updateCartDom(itemId)
             updateCartCounterDom()
 
         })
@@ -90,13 +85,13 @@ function cartButtonsAction() {
             const itemId = Number(e.target.dataset.id)
             if (!itemId) return
             addItemToOrderList(itemId)
-            generateCartDom(itemId)
+            updateCartDom(itemId)
         }
         else if (less) {
             const itemId = Number(e.target.dataset.id)
             if (!itemId) return
             reduceOrderItemQuantity(itemId)
-            decreaseCartItemDom(itemId)
+            updateCartDom(itemId)
             if (appState.orderList.length === 0) {
                 showSection('menu')
             }
@@ -110,8 +105,6 @@ function cartButtonsAction() {
                 showSection('menu')
             }
         }
-
-        updateTotalPriceCartDom()
         updateCartCounterDom()
     })
 }
@@ -146,6 +139,7 @@ function receiptButtonAction() {
 
         try {
             await getReceipt()
+            updateReceiptDom()
             showSection('receipt')
         } catch (error) {
             showErrorMessage('receipt')

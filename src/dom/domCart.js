@@ -1,9 +1,8 @@
 import { appState } from "../state/appState.js"
+import { showErrorMessage } from "../state/errorMessage.js"
 
 /** !CART! Puts an item in the DOM tree*/
-function generateCartDom(itemId) {
-    const item = appState.orderList.find(i => i.id === itemId)
-    if (!item) return
+function generateCartDom(item) {
 
     const containerMap = {
         wonton: document.querySelector('.cart-wonton-dom'),
@@ -11,16 +10,9 @@ function generateCartDom(itemId) {
         drink: document.querySelector('.cart-drink-dom')
     }
     const container = containerMap[item.type]
-    if (!container) return
-
-    let cartItemDom = container.querySelector(`.cart-boxes[data-id="${itemId}"]`)
-    if (cartItemDom) {
-
-        if (item.quantity === 1) {
-            cartItemDom.querySelector('.amount-of-type').textContent = `${item.quantity} Styck`
-        } else {
-            cartItemDom.querySelector('.amount-of-type').textContent = `${item.quantity} Stycken`
-        }return
+    if (!container) {
+        showErrorMessage('itemNotFound')
+        return
     }
 
     const cartBox = document.createElement('div')
@@ -38,12 +30,13 @@ function generateCartDom(itemId) {
     span.classList.add('dots')
 
     const price = document.createElement('h2')
-    price.textContent = item.price + ' SEK'
+    price.classList.add('item-price')
+    price.textContent = `${item.price * item.quantity} SEK`
 
     title.append(name, span, price)
 
-    const moreOrLessOrRemove = document.createElement('div')
-    moreOrLessOrRemove.classList.add('more-less-remove')
+    const controls = document.createElement('div')
+    controls.classList.add('more-less-remove')
 
     const moreOrLess = document.createElement('div')
     moreOrLess.classList.add('more-or-less')
@@ -53,73 +46,85 @@ function generateCartDom(itemId) {
     more.textContent = '+'
     more.dataset.id = item.id
 
-    const p = document.createElement('p')
-    p.classList.add('amount-of-type')
-    p.textContent = `${item.quantity} Styck`
+    const quantity = document.createElement('p')
+    quantity.classList.add('amount-of-type')
+    quantity.textContent = `${item.quantity} styck`
 
     const less = document.createElement('button')
     less.classList.add('less-button')
     less.textContent = '-'
     less.dataset.id = item.id
 
-    moreOrLess.append(more, p, less)
+    moreOrLess.append(more, quantity, less)
 
     const removeCartButton = document.createElement('button')
     removeCartButton.classList.add('remove-cart-button')
     removeCartButton.dataset.id = item.id
-    removeCartButton.textContent = 'X'
+    
+    const image = document.createElement('img')
+    image.src ='./assets/images/trash.svg'
+    image.alt ='trashcan'
+    removeCartButton.appendChild(image)
 
-    moreOrLessOrRemove.append(moreOrLess, removeCartButton)
-    cartBox.append(title, moreOrLessOrRemove)
+    controls.append(moreOrLess, removeCartButton)
+    cartBox.append(title, controls)
     container.appendChild(cartBox)
-}
-
-/** !CART! Reduces the quantity of an item by one, in the DOM tree */
-function decreaseCartItemDom(itemId) {
-    const item = appState.orderList.find(i => i.id === itemId)
-
-    const placement = document.querySelector(`.cart-boxes[data-id="${itemId}"]`)
-    if (!placement) return
-
-    if (!item) {
-        placement.remove()
-        return
-    }
-
-    const quantity = placement.querySelector(`.amount-of-type`)
-
-    if (item.quantity === 1) {
-        quantity.textContent = `${item.quantity} Styck`
-    } else {
-         quantity.textContent = `${item.quantity} Stycken`
-    }
 }
 
 /** !CART! Removes an entier item from the DOM tree */
 function removeCartItemDom(itemId) {
 
     const placement = document.querySelector(`.cart-boxes[data-id="${itemId}"]`)
-    if (!placement) return
-    placement.remove()
+    if (placement) {
+        placement.remove()
+        syncCartDom()
+    }
 }
 
 /** !CART! Removes ALL items from the DOM tree */
 function resetCartDom() {
-    const placement = document.querySelectorAll('.cart-boxes')
-    if (!placement) return
-    placement.forEach(box => box.remove())
+    document.querySelectorAll('.cart-boxes').forEach(box => box.remove())
+    syncCartDom()
 }
 
-/** !CART! updates the total price in the DOM tree */
-function updateTotalPriceCartDom() {
-    const costElement = document.querySelector('.cost-cart')
-    costElement.textContent = `${appState.orderInfo.totalPrice} SEK`
+/** !CART! Updates cart DOM: Price, qunatity total */
+function syncCartDom(item) {
+    const costTotal = document.querySelector('.cost-cart')
+    costTotal.textContent = `${appState.orderInfo.totalPrice} SEK`
+    
+    if (!item) return
+    
+    const placement = document.querySelector(`.cart-boxes[data-id="${item.id}"]`)
+    if (!placement) {
+        showErrorMessage('default')   
+        return
+    }
+    const quantity = placement.querySelector('.amount-of-type')
+    if (item.quantity === 1) {quantity.textContent = `${item.quantity} styck`}
+    else {quantity.textContent = `${item.quantity} stycken`}
+    
+    const totalPriceOfType = placement.querySelector('.item-price')
+    totalPriceOfType.textContent = `${item.quantity * item.price} SEK`
 }
 
+/** !CART! Main entry point for cart DOM */
+function updateCartDom(itemId) {
+    const item = appState.orderList.find(i => i.id === itemId)
+    
+    if (!item) {
+        const placement = document.querySelector(`.cart-boxes[data-id="${itemId}"]`)
+        if (placement) placement.remove()
+        syncCartDom()
+        return
+    }
+    const placement = document.querySelector(`.cart-boxes[data-id="${item.id}"]`)
+    if (!placement) {
+        generateCartDom(item)
+    }
+    syncCartDom(item)
+}
 export {
-    generateCartDom,
-    updateTotalPriceCartDom,
+    updateCartDom,
     resetCartDom,
-    decreaseCartItemDom,
     removeCartItemDom
 }

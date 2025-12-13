@@ -43,7 +43,7 @@ function generateDipAndDrink(item, target) {
 function generateMenuDom() {
 
     if (!appState.menuItems) {
-        showErrorMessage('menuEmpty')
+        showErrorMessage('menuOrReceiptEmpty')
         return
     }
 

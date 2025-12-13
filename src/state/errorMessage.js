@@ -6,7 +6,7 @@ function showErrorMessage(type) {
         tenant: 'Verifieringsfel\nförsök igen senare', //inloggningsfel kontofel if its implemented
         menu: 'Laddningsfel\nförsök igen senare',
         API: 'Serverfel\nförsök igen senare',
-        menuEmpty: 'Laddningsfel\nförsök igen senare',
+        menuOrReceiptEmpty: 'Laddningsfel\nförsök igen senare',
         order: 'Beställningsfel\nförsök igen senare',
         itemNotFound: 'Artikel saknas\nförsök igen senare',
         receipt: 'Kvittofel\nförsök igen senare',
