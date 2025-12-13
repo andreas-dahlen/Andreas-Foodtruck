@@ -1,4 +1,4 @@
-import { showErrorMessage } from '../state/errorMessage.js'
+import { errorMessage } from '../state/errorMessage.js'
 import { appState } from '../state/appState.js'
 
 /** !MENU! Puts a wonton in the DOM tree*/
@@ -43,7 +43,7 @@ function generateDipAndDrink(item, target) {
 function generateMenuDom() {
 
     if (!appState.menuItems) {
-        showErrorMessage('menuOrReceiptEmpty')
+        errorMessage('menuOrReceiptEmpty')
         return
     }
 

@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foodtruck</title>
 
-    <link rel="stylesheet" href="./assets/style/main.css">
+
     <link rel="stylesheet" href="./assets/style/menu.css">
     <link rel="stylesheet" href="./assets/style/cart.css">
     <link rel="stylesheet" href="./assets/style/waiting.css">
     <link rel="stylesheet" href="./assets/style/receipt.css">
+    <link rel="stylesheet" href="./assets/style/error.css">
+    <link rel="stylesheet" href="./assets/style/main.css">
 
     <script type="module" src="./src/main.js"></script>
 </head>
@@ -20,13 +22,17 @@
     <!-- <section id="mainPage" class="first-page-style display-remove"></section> -->
     <!-- TODO: if i have time -->
 
-    <!-- TODO: <section id="error"></section> -->
+    <section class="global-error-message">
+        <div class="error-card">
+            <h2 class="error-text"></h2>
+        </div>
+    </section>
+
+
 
     <section id="loading" class="loading-style display-remove"></section>
 
     <section id="menu" class="menu-style display-remove">
-
-        <div class="error-menu global-error-message hidden"></div>
 
         <img class="test-button-delete-me" src="./assets/images/menu-example.png" alt="DELETE ME!">
         <!-- TODO: delete this -->
@@ -65,8 +71,6 @@
 
     <section id="cart" class="cart-style display-remove">
 
-        <div class="error-cart global-error-message hidden"></div>
-
         <img class="test-button-delete-me" src="./assets/images/cart-example.png" alt="DELETE ME!">
         <!-- TODO: delete this -->
 
@@ -100,8 +104,6 @@
 
     <section id="waiting" class="waiting-style display-remove">
 
-        <div class="error-waiting global-error-message hidden"></div>
-
         <img class="test-button-delete-me" src="./assets/images/waiting-example.png" alt="DELETE ME!">
         <!-- TODO: delete this -->
 
@@ -121,8 +123,6 @@
     </section>
 
     <section id="receipt" class="receipt-style display-remove">
-
-        <div class="error-receipt global-error-message hidden"></div>
 
         <img class="test-button-delete-me" src="./assets/images/receipt-example.png" alt="DELETE ME!">
         <!-- TODO: delete this -->

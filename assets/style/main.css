@@ -16,6 +16,8 @@
     --main-font: 'Source Sans Pro', sans-serif;
 
     --animation-green: #72e0bb;
+
+    --red: #EB5757;
 }
 
 * {
@@ -29,6 +31,7 @@ html, body {
     width: 100%;
     height: 100%;
     overflow: auto;
+    position: relative;
 }
 
 .display-remove {
@@ -37,15 +40,7 @@ html, body {
 
 .hidden {
     opacity: 0;
-}
-
-.global-error-message {
-    color: rgb(255, 0, 0);
-    font-size: 1.5em;
-    font-weight: bold;
-    text-shadow: 1px 2px 4px black;
-    white-space: pre-wrap;
-    text-align: center;
+    cursor: default;
 }
 
 button {

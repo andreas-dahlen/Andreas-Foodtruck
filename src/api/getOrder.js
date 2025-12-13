@@ -1,4 +1,4 @@
-import { showErrorMessage } from "../state/errorMessage.js"
+import { errorMessage } from "../state/errorMessage.js"
 import { appState } from "../state/appState.js"
 
 async function getOrder() {
@@ -27,7 +27,7 @@ async function getOrder() {
 
     } catch (error) {
         console.error('ordering error: ', error.message)
-        showErrorMessage('order')
+        errorMessage('order')
     }
 }
 

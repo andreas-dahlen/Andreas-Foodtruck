@@ -1,4 +1,5 @@
 import { appState } from '../state/appState.js'
+import { errorMessage } from '../state/errorMessage.js'
 
 async function getReceipt() {
     try {
@@ -21,7 +22,7 @@ async function getReceipt() {
 
     } catch (error) {
         console.error('receipt error: ', error.message)
-        showErrorMessage('receipt')
+        errorMessage('receipt')
     }
 }
 

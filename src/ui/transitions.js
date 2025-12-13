@@ -19,4 +19,15 @@ function showSection(input) {
     sections[input].classList.remove('display-remove')
 }
 
-export { showSection }
+function showErrorSection() {
+    const placement = document.querySelector('.global-error-message')
+    placement.classList.add('visible');
+
+        clearTimeout(window._errorTimeout);
+
+    window._errorTimeout = setTimeout(() => {
+        placement.classList.remove('visible');
+    }, 4000);
+}
+
+export { showSection, showErrorSection }
