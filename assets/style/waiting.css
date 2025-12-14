@@ -1,0 +1,65 @@
+.error-waiting {
+    position: absolute;
+    top: 40px;
+    left: 90px;
+}
+
+.img-box-big {
+    width: 100%;
+    max-width: 368px;
+    margin: 0 auto;
+    padding-top: 92px;
+ 
+    &>img {
+        max-width: 100%;
+    }
+}
+
+.progress {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: -1.1em 2em 12px 2em;
+
+    p{
+        margin-top: 1em;
+        font-weight: bold;
+    }
+}
+
+.open-receipt {
+    display: flex;
+    width: 87vw;
+    background-color: transparent;
+    border: 2px solid white;
+    justify-self: center;
+    justify-content: center;
+    margin-top: 40px;
+    border-radius: 5px;
+    font-size: 1.5em;
+    padding: 20px 0;
+    white-space: nowrap;
+    font-weight: bold;
+    transition:
+        box-shadow 0.3s ease,
+        transform 0.2s ease;
+
+    &:hover {
+        transform: scale(1.03);
+        box-shadow: 0 4px 15px black;
+        background-color: var(--light-gray-menu);
+    }
+
+    &:focus-visible {
+        position: relative;
+        outline: 3px solid var(--animation-green);
+        outline-offset: 1px;
+        border-radius: 5px;
+        transform: scale(1.03);
+    }
+}
+
+.progress > h1, .progress > h2, .progress > p, .open-receipt {
+    color: var(--text-color)
+}

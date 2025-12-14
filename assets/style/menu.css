@@ -1,0 +1,178 @@
+#menu > .header-spacer {
+    height: 97px;
+}
+
+.cart {
+    right: 25px;
+    top: 19px;
+}
+
+.cart-button {
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px black;
+    }
+    &:focus-visible {
+        outline: 3px solid var(--animation-green);
+        border-radius: 5px;
+        transform: scale(1.05);
+    }
+}
+
+.amount-in-cart {
+    position: absolute;
+    background-color: var(--red);
+    width: 23px;
+    height: 23px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    left: 50px;
+    bottom: 50px;
+}
+
+.error-menu {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+}
+
+.menu-dom {
+    background-color: var(--light-gray-menu);
+    /* background-color: hotpink; */
+    border-radius: 5em;
+    width: 87vw;
+    justify-self: center;
+
+    &> :first-child {
+        border-radius: 9px 9px 0 0;
+    }
+
+    &> :last-child {
+        border-radius: 0 0 9px 9px;
+    }
+}
+
+.food-boxes {
+    /* position: relative; */
+    all: unset;
+    width: 87vw;
+    /* color: var(--text-color); */
+    background-color: var(--gray-background);
+    cursor: pointer;
+    margin-bottom: 1px;
+    overflow: visible;
+    transition:
+        background-color 0.3s ease,
+        box-shadow 0.1s ease,
+        trasform 0.2s ease;
+
+    &>p {
+        padding: 3px 0 19px 14px;
+    }
+
+    &:hover {
+        background-color: var(--dark-gray);
+    }
+
+    &:active {
+        box-shadow: 0 0 8px var(--animation-green);
+        transform: scale(1.03);
+    }
+
+    &:focus-visible {
+        position: relative;
+        outline: 3px solid var(--animation-green);
+        background-color: var(--dark-gray);
+        outline-offset: 1px;
+        border-radius: 5px;
+        transform: scale(1.05);
+    }
+}
+
+.menu-title-style {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &>h2:first-child {
+        font-size: 1.3em;
+        padding: 13px 3px 0 15px;
+    }
+
+    &>h2:last-child {
+        font-size: 1.4em;
+        padding: 13px 15px 0 3px;
+    }
+}
+
+.menu-title-style .dots {
+    flex: 1;
+    height: 2px;
+    margin-top: 35px;
+    background: repeating-linear-gradient(to right,
+            rgb(255, 255, 255) 0 2px,
+            transparent 2px 4px);
+}
+
+.sauce-menu,
+.drink-menu {
+    margin-top: 14px;
+    background-color: var(--gray-background);
+    border-radius: 10px;
+    width: 87vw;
+    padding-bottom: 2px;
+    justify-self: center;
+}
+
+.sauce-dom,
+.drink-dom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 17px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 22px 16px 13px 16px;
+
+    /* button that adds a drink/sauce to basket */
+    &>button {
+        flex: 1 1 auto;
+        min-width: 45px;
+        max-width: max-content;
+        font-size: 0.8em;
+        background-color: var(--light-gray-menu);
+        /* background-color: hotpink; */
+        border-radius: 5px;
+        padding: 7px 11px;
+        cursor: pointer;
+        white-space: nowrap;
+        text-align: center;
+        transition:
+            background-color 0.3s ease,
+            box-shadow 0.1s ease,
+            transform 0.2s ease;
+
+        &:hover {
+            background-color: var(--dark-gray);
+        }
+
+        &:active {
+            box-shadow: 0 0 8px var(--animation-green);
+            transform: scale(1.1);
+        }
+
+        &:focus-visible {
+            position: relative;
+            outline: 3px solid var(--animation-green);
+            background-color: var(--dark-gray);
+            outline-offset: 1px;
+            border-radius: 5px;
+            transform: scale(1.1);
+        }
+    }
+}

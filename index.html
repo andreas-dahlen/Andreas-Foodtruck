@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YUM YUM GIM MI SUM</title>
+
+
+    <link rel="stylesheet" href="./assets/style/menu.css">
+    <link rel="stylesheet" href="./assets/style/cart.css">
+    <link rel="stylesheet" href="./assets/style/waiting.css">
+    <link rel="stylesheet" href="./assets/style/receipt.css">
+    <link rel="stylesheet" href="./assets/style/loading.css">
+    <link rel="stylesheet" href="./assets/style/error.css">
+    <link rel="stylesheet" href="./assets/style/main.css">
+
+    <script type="module" src="./src/main.js"></script>
+</head>
+
+<body>
+
+    <!-- <section id="mainPage" class="first-page-style display-remove"></section> -->
+    <!-- TODO: if i have time -->
+
+    <section class="global-error-message">
+        <div class="error-card">
+            <h2 class="error-text"></h2>
+        </div>
+    </section>
+
+    <section class="loading-style">
+        <h1>LOADING...</h1>
+        <div class="loading-rotate">
+            <div class="truck">
+                <div class="smoke">
+                    <div class="smoke smoke-extra-position"></div>
+                    <div class="smoke smoke-extra-position"></div>
+                    <div class="smoke smoke-extra-position"></div>
+                </div>
+                <img src="./assets/images/poster-removebg.png" alt="Food truck image">
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="menu-style display-remove">
+
+        <img class="test-button-delete-me" src="./assets/images/menu-example.png" alt="DELETE ME!">
+        <!-- TODO: delete this -->
+
+        <div class="header-spacer">
+            <button class="cart cart-button">
+                <img src="./assets/images/cart.svg" alt="cart icon">
+                <div class="amount-in-cart">0</div>
+            </button>
+        </div>
+
+        <h1>MENY</h1>
+
+        <div class="menu-dom"></div>
+
+        <div class="sauce-menu">
+            <div class="menu-title-style">
+                <h2 class="sauce-title">DIPSÅS</h2>
+                <span class="dots"></span>
+                <!-- could add the sauce name to the spacer with selected -->
+                <h2 class="sauce-price">19 SEK</h2>
+            </div>
+            <div class="sauce-dom"></div>
+        </div>
+
+        <div class="drink-menu">
+            <div class="menu-title-style">
+                <h2 class="drink-title">DRICKA</h2>
+                <span class="dots"></span>
+                <!-- could add the sauce name to the spacer with selected-->
+                <h2 class="drink-price"> 19 SEK</h2>
+            </div>
+            <div class="drink-dom"></div>
+        </div>
+    </section>
+
+    <section id="cart" class="cart-style display-remove">
+
+        <img class="test-button-delete-me" src="./assets/images/cart-example.png" alt="DELETE ME!">
+        <!-- TODO: delete this -->
+
+        <div class="header-spacer">
+            <button class="cart to-menu">
+                <img src="./assets/images/cart.svg" alt="cart icon">
+            </button>
+        </div>
+
+        <h1> BESTÄLLNING </h1>
+
+        <div class="cart-dom">
+            <!-- TODO: ADD TRASH CAN! -->
+            <div class="cart-wonton-dom"></div>
+            <div class="cart-dip-dom"></div>
+            <div class="cart-drink-dom"></div>
+        </div>
+
+        <!-- <button class="menu-button to-menu">MENY</button> -->
+
+        <div class="total-display-big">
+            <div class="total-left-big">
+                <h2>TOTALT</h2>
+                <p>inkl 20% moms</p>
+            </div>
+            <h2 class="cost-cart"></h2>
+        </div>
+
+        <button id="takeMoney" class="bottom-button">TAKE MY MONEY!</button>
+    </section>
+
+    <section id="waiting" class="waiting-style display-remove">
+
+        <img class="test-button-delete-me" src="./assets/images/waiting-example.png" alt="DELETE ME!">
+        <!-- TODO: delete this -->
+
+        <div class="img-box-big">
+            <img src="./assets/images/boxtop.png" alt="big wonton image">
+        </div>
+
+        <div class="progress">
+            <h1>DINA WONTONS TILLAGAS!</h1>
+            <h2>ETA MIN</h2>
+            <p>beställningsnummer saknas</p>
+        </div>
+
+        <button class="open-receipt">SE KVITTO</button>
+
+        <button class="new-order bottom-button">GÖR EN NY BESTÄLLNING</button>
+    </section>
+
+    <section id="receipt" class="receipt-style display-remove">
+
+        <img class="test-button-delete-me" src="./assets/images/receipt-example.png" alt="DELETE ME!">
+        <!-- TODO: delete this -->
+
+        <div class="receipt-big">
+            <div class="receipt-header">
+                <img src="./assets/images/logo.png" alt="">
+                <h2>KVITTO</h2>
+                <p>beställningsnummer?</p>
+            </div>
+
+            <div class="receipt-dom">
+                <div class="receipt-wonton-dom"></div>
+                <div class="receipt-dip-dom"></div>
+                <div class="receipt-drink-dom"></div>
+            </div>
+                <!-- <div class="receipt-title-style">
+                    <h2>class not needed..?</h2>
+                    <p class="spacer"></p>
+                    <h2 class="food-price"></h2>
+                </div>
+
+                <div class="amount-of-type">
+                    <p> 0 stycken </p>
+                </div> -->
+
+                <div class="total-display-small">
+                    <div class="total-left-small">
+                        <h2>TOTALT</h2>
+                        <p>inkl 20% moms</p>
+                    </div>
+                    <h2 class="cost-receipt"></h2>
+                </div>
+            </div>
+        </div>
+
+        <button class="new-order bottom-button">GÖR EN NY BESTÄLLNING</button>
+    </section>
+</body>
+
+</html>

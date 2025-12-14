@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap');
+
+:root {
+    /* main menu: */
+    --green-menu: #489078;
+    --light-gray-menu:#837C7C;
+/* cart: */
+    --white-ish-cart: #EEEEEE;
+/* waiting:  */
+    --see-receipt-waiting: #CFCDCA;
+/* all */
+    --dark-gray: #353131;
+    --gray-background: #605858;
+    --light-gray: #C2C1C1;
+    --text-color: #EBEAE7; 
+    --main-font: 'Source Sans Pro', sans-serif;
+
+    --animation-green: #72e0bb;
+
+    --red: #EB5757;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--main-font)
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    position: relative;
+}
+
+.display-remove {
+    display: none;
+}
+
+.hidden {
+    opacity: 0;
+    cursor: default;
+}
+
+button {
+    all: unset;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.header-spacer {
+    position: relative;
+
+    &>* {
+    position: absolute;
+    background-color: var(--white-ish-cart);
+    border-radius: 5px;
+    padding: 14px;
+    }
+}
+
+.cart {
+    right: 25px;
+    top: 19px;
+}
+
+.menu-style {
+    background-color: var(--green-menu);
+    color: var(--text-color);
+    padding-bottom: 6em;
+}
+
+.cart-style {
+    background-color: var(--white-ish-cart);
+    /* background-color: hotpink; */
+    padding-bottom: 8px;
+}
+
+.waiting-style {
+    background-color: var(--gray-background);
+    padding-bottom: 8px;
+}
+
+.receipt-style {
+    background-color: var(--gray-background);
+    padding-bottom: 8px;
+    padding-top: 157px;
+}
+
+.loading-style {
+    background-color: #2e5b4c;
+}
+
+h1 {
+    margin-left: 16px;
+    margin-bottom: 9px;
+}
+
+.test-button-delete-me {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 370px;
+    height: auto;
+    z-index: 10;
+    opacity: 0.5;
+    display: none;
+}
