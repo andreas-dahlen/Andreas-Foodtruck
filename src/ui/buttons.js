@@ -6,7 +6,7 @@ import {
     removeItemFromOrderList
 } from "../state/appStateMod.js";
 import { errorMessage } from "../state/errorMessage.js";
-import { showSection } from "./transitions.js";
+import { showSection, showLoadingSection } from "./transitions.js";
 
 import { getOrder } from "../api/getOrder.js";
 import { getReceipt } from "../api/getReceipt.js";
@@ -29,6 +29,7 @@ function startNewOrderButtons() {
     const buttons = document.querySelectorAll('.new-order')
     buttons.forEach(button => {
         button.addEventListener('click', () => {
+            showLoadingSection()
             resetAppState()
             resetCartDom()
             resetReceiptDom()
@@ -113,7 +114,7 @@ function cartButtonsAction() {
 function orderButtonAction() {
     const button = document.querySelector('#takeMoney')
     button.addEventListener('click', async () => {
-        showSection('loading')
+        showLoadingSection()
         button.disabled = true
 
         try {
@@ -134,7 +135,7 @@ function orderButtonAction() {
 function receiptButtonAction() {
     const button = document.querySelector('.open-receipt')
     button.addEventListener('click', async () => {
-        showSection('loading')
+        showLoadingSection()
         button.disabled = true
 
         try {
