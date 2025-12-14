@@ -1,6 +1,7 @@
 import { appState } from "../state/appState.js"
 import { errorMessage } from "../state/errorMessage.js"
 
+/** !RECEIPT! Puts an item in the DOM tree*/
 function generateReceiptItemDom(itemId) {
     const item = appState.receiptInfo.items.find(i => i.id === itemId)
     if (!item) return
@@ -12,7 +13,10 @@ function generateReceiptItemDom(itemId) {
     }
 
     const container = containerMap[item.type]
-    if (!container) return
+    if (!container) {
+        errorMessage('itemNotFound')
+        return
+    }
 
     const receiptBox = document.createElement('div')
     receiptBox.classList.add('receipt-boxes')
@@ -29,6 +33,7 @@ function generateReceiptItemDom(itemId) {
     span.classList.add('dots')
 
     const price = document.createElement('h2')
+    price.classList.add('receipt-item-price')
     price.textContent = item.price + ' SEK'
 
     title.append(name, span, price)
@@ -47,7 +52,19 @@ function generateReceiptItemDom(itemId) {
 
 }
 
+/** !RECEIPT! Removes ALL items from the DOM tree */
+function resetReceiptDom() {
+    document.querySelectorAll('.receipt-boxes').forEach(box => box.remove())
+}
+
+/** !RECEIPT! Main entry point for receipt DOM */
 function updateReceiptDom() {
+
+    const orderNumber = document.querySelector('.receipt-header > p')
+    orderNumber.textContent = `#${appState.receiptInfo.receiptId}`
+
+    const totalReceipt = document.querySelector('.cost-receipt')
+    totalReceipt.textContent = `${appState.receiptInfo.orderValue} SEK`
 
     const items = appState.receiptInfo.items
 
@@ -58,7 +75,4 @@ function updateReceiptDom() {
     items.forEach(item => generateReceiptItemDom(item.id))
 }
 
-function resetReceiptDom() {
-    document.querySelectorAll('.receipt-boxes').forEach(box => box.remove())
-}
 export { updateReceiptDom, resetReceiptDom}

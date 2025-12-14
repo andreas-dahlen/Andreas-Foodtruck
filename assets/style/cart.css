@@ -53,14 +53,17 @@
     }
 
     &>h2:last-child {
-        padding: 3px 24px 0 3px;
+        padding: 3px 24px 0 0px;
     }
 }
 
 .cart-title-style .dots {
     flex: 1;
-    border-bottom: 3px dotted black;
-    transform: translateY(11px);
+    height: 2px;
+    margin-top: 23px;
+    background: repeating-linear-gradient(to right,
+            rgb(0, 0, 0) 0 2px,
+            transparent 2px 4px);
 }
 
 .cart-title-style .item-price {
@@ -195,8 +198,9 @@
     justify-content: space-between;
     align-items: center;
     padding: 14px;
+    margin-top: 71px;
 
-    & .cost-cart, cost-receipt {
+    & .cost-cart {
         font-size: 2.1em;
     }
 }
