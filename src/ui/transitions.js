@@ -2,10 +2,8 @@ const sections = {
     menu: document.querySelector('#menu'),
     cart: document.querySelector('#cart'),
     waiting: document.querySelector('#waiting'),
-    receipt: document.querySelector('#receipt'),
-    loading: document.querySelector('#loading')
+    receipt: document.querySelector('#receipt')
 }
-
 
 function hideAllSections() {
     Object.values(sections).forEach(element => {
@@ -16,7 +14,12 @@ function hideAllSections() {
 function showSection(input) {
     hideAllSections()
 
+    const section = sections[input]
+    if (!section) return
+
     sections[input].classList.remove('display-remove')
+
+    clearVisible()
 }
 
 function showErrorSection() {
@@ -30,4 +33,14 @@ function showErrorSection() {
     }, 4000);
 }
 
-export { showSection, showErrorSection }
+function clearVisible() {
+    const visible = document.querySelector('.loading-style')
+    visible.classList.remove('visible')
+}
+
+function showLoadingSection() {
+    const placement = document.querySelector('.loading-style')
+          placement.classList.add('visible')
+}
+
+export { showSection, showErrorSection, showLoadingSection }

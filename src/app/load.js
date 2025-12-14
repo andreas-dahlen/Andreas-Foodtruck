@@ -10,10 +10,10 @@ import {
 } from "../ui/buttons.js";
 import { initApi } from "../api/apiInnit.js";
 import { generateMenuDom } from '../dom/domMenu.js';
-import { showSection } from "../ui/transitions.js";
+import { showSection, showLoadingSection } from "../ui/transitions.js";
 
 async function initLoad() {
-    showSection('loading')
+    showLoadingSection()
     await initApi()
     generateMenuDom()
     showSection('menu')

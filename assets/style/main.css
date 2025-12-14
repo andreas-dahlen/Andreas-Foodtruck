@@ -92,6 +92,10 @@ section {
     padding-top: 157px;
 }
 
+.loading-style {
+    background-color: #2e5b4c;
+}
+
 h1 {
     margin-left: 16px;
     margin-bottom: 9px;
@@ -106,5 +110,5 @@ h1 {
     height: auto;
     z-index: 10;
     opacity: 0.5;
-    /* display: none; */
+    display: none;
 }
