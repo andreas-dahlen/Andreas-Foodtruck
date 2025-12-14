@@ -60,10 +60,10 @@ function generateCartDom(item) {
     const removeCartButton = document.createElement('button')
     removeCartButton.classList.add('remove-cart-button')
     removeCartButton.dataset.id = item.id
-    
+
     const image = document.createElement('img')
-    image.src ='./assets/images/trash.svg'
-    image.alt ='trashcan'
+    image.src = './assets/images/trash.svg'
+    image.alt = 'trashcan'
     removeCartButton.appendChild(image)
 
     controls.append(moreOrLess, removeCartButton)
@@ -87,22 +87,22 @@ function resetCartDom() {
     syncCartDom()
 }
 
-/** !CART! Updates cart DOM: Price, qunatity total */
+/** !CART! Updates cart DOM: Price, qunatity & total */
 function syncCartDom(item) {
     const costTotal = document.querySelector('.cost-cart')
     costTotal.textContent = `${appState.orderInfo.totalPrice} SEK`
-    
+
     if (!item) return
-    
+
     const placement = document.querySelector(`.cart-boxes[data-id="${item.id}"]`)
     if (!placement) {
-        errorMessage('default')   
+        errorMessage('default')
         return
     }
     const quantity = placement.querySelector('.amount-of-type')
-    if (item.quantity === 1) {quantity.textContent = `${item.quantity} styck`}
-    else {quantity.textContent = `${item.quantity} stycken`}
-    
+    if (item.quantity === 1) { quantity.textContent = `${item.quantity} styck` }
+    else { quantity.textContent = `${item.quantity} stycken` }
+
     const totalPriceOfType = placement.querySelector('.item-price')
     totalPriceOfType.textContent = `${item.quantity * item.price} SEK`
 }
@@ -110,7 +110,7 @@ function syncCartDom(item) {
 /** !CART! Main entry point for cart DOM */
 function updateCartDom(itemId) {
     const item = appState.orderList.find(i => i.id === itemId)
-    
+
     if (!item) {
         const placement = document.querySelector(`.cart-boxes[data-id="${itemId}"]`)
         if (placement) placement.remove()

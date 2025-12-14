@@ -106,5 +106,5 @@ h1 {
     height: auto;
     z-index: 10;
     opacity: 0.5;
-    display: none;
+    /* display: none; */
 }
