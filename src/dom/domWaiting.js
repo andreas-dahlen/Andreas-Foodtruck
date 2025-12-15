@@ -42,7 +42,7 @@ function etaTimerDom(action = 'start') {
     else if (action === 'reset') {
         clearInterval(timerInterval)
         timerInterval = null
-
+        textDisplay.textContent = 'DINA WONTONS TILLAGAS!'
         timerDisplay.classList.remove('pulse');
     }
 }
