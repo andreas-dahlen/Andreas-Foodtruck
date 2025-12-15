@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YUM YUM GIM MI SUM</title>
 
-
+    <link rel="icon" href="./assets/images/logo.png" type="image/png">
     <link rel="stylesheet" href="./assets/style/menu.css">
     <link rel="stylesheet" href="./assets/style/cart.css">
     <link rel="stylesheet" href="./assets/style/waiting.css">
@@ -48,14 +48,18 @@
         <img class="test-button-delete-me" src="./assets/images/menu-example.png" alt="DELETE ME!">
         <!-- TODO: delete this -->
 
-        <div class="header-spacer">
+        <header>
+            <div class="spacer"></div>
             <button class="cart cart-button">
                 <img src="./assets/images/cart.svg" alt="cart icon">
                 <div class="amount-in-cart">0</div>
             </button>
-        </div>
+        </header>
 
-        <h1>MENY</h1>
+        <div class="h1-menu">
+            <h1>MENY</h1>
+            <div class="spacer"></div>
+        </div>
 
         <div class="menu-dom"></div>
 
@@ -63,7 +67,6 @@
             <div class="menu-title-style">
                 <h2 class="sauce-title">DIPSÅS</h2>
                 <span class="dots"></span>
-                <!-- could add the sauce name to the spacer with selected -->
                 <h2 class="sauce-price">19 SEK</h2>
             </div>
             <div class="sauce-dom"></div>
@@ -73,7 +76,6 @@
             <div class="menu-title-style">
                 <h2 class="drink-title">DRICKA</h2>
                 <span class="dots"></span>
-                <!-- could add the sauce name to the spacer with selected-->
                 <h2 class="drink-price"> 19 SEK</h2>
             </div>
             <div class="drink-dom"></div>
@@ -85,22 +87,23 @@
         <img class="test-button-delete-me" src="./assets/images/cart-example.png" alt="DELETE ME!">
         <!-- TODO: delete this -->
 
-        <div class="header-spacer">
+        <header>
+            <div class="spacer"></div>
             <button class="cart to-menu">
                 <img src="./assets/images/cart.svg" alt="cart icon">
             </button>
+        </header>
+
+        <div class="h1-cart">
+            <h1>BESTÄLLNING</h1>
+            <div class="spacer"></div>
         </div>
 
-        <h1> BESTÄLLNING </h1>
-
         <div class="cart-dom">
-            <!-- TODO: ADD TRASH CAN! -->
             <div class="cart-wonton-dom"></div>
             <div class="cart-dip-dom"></div>
             <div class="cart-drink-dom"></div>
         </div>
-
-        <!-- <button class="menu-button to-menu">MENY</button> -->
 
         <div class="total-display-big">
             <div class="total-left-big">
@@ -142,7 +145,7 @@
             <div class="receipt-header">
                 <img src="./assets/images/logo.png" alt="">
                 <h2>KVITTO</h2>
-                <p>beställningsnummer?</p>
+                <p>beställningsnummer</p>
             </div>
 
             <div class="receipt-dom">
@@ -150,23 +153,13 @@
                 <div class="receipt-dip-dom"></div>
                 <div class="receipt-drink-dom"></div>
             </div>
-                <!-- <div class="receipt-title-style">
-                    <h2>class not needed..?</h2>
-                    <p class="spacer"></p>
-                    <h2 class="food-price"></h2>
-                </div>
 
-                <div class="amount-of-type">
-                    <p> 0 stycken </p>
-                </div> -->
-
-                <div class="total-display-small">
-                    <div class="total-left-small">
-                        <h2>TOTALT</h2>
-                        <p>inkl 20% moms</p>
-                    </div>
-                    <h2 class="cost-receipt"></h2>
+            <div class="total-display-small">
+                <div class="total-left-small">
+                    <h2>TOTALT</h2>
+                    <p>inkl 20% moms</p>
                 </div>
+                <h2 class="cost-receipt"></h2>
             </div>
         </div>
 

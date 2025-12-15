@@ -17,9 +17,6 @@ async function getReceipt() {
         appState.receiptInfo.items = data.receipt.items
         appState.receiptInfo.orderValue = data.receipt.orderValue
 
-        console.log(appState)
-        //TODO remove console.log
-
     } catch (error) {
         console.error('receipt error: ', error.message)
         errorMessage('receipt')

@@ -30,6 +30,7 @@ function startNewOrderButtons() {
     buttons.forEach(button => {
         button.addEventListener('click', () => {
             showLoadingSection()
+            etaTimerDom('reset')
             resetAppState()
             resetCartDom()
             resetReceiptDom()
@@ -51,61 +52,70 @@ function toggleCartButton() {
     })
 }
 
-/** adds eventListeners 'click' in menu that adds and updates appState and display*/
+/** adds eventListener 'click' in menu that adds and updates appState and display*/
 function menuButtonsAction() {
-    const targets = ['.menu-dom', '.drink-dom', '.sauce-dom']
-
-    targets.forEach(domPlace => {
-        const container = document.querySelector(domPlace)
-        if (!container) return
-
-        container.addEventListener('click', (e) => {
-            const box = e.target.closest('[data-id]')
-            if (!box) return
-
-            const itemId = Number(box.dataset.id)
+    const menuItems = document.querySelectorAll('.menu-dom .food-boxes')
+    const drinkItems = document.querySelectorAll('.drink-dom button')
+    const sauceItems = document.querySelectorAll('.sauce-dom button')
+    
+    const allItems = [...menuItems, ...drinkItems, ...sauceItems]
+    
+    allItems.forEach(item => {
+        if (!item) return
+        
+        item.addEventListener('click', () => {
+            const itemId = Number(item.dataset.id)
             addItemToOrderList(itemId)
             updateCartDom(itemId)
             updateCartCounterDom()
-
         })
     })
 }
+// This is a clean version with only one event listener for each menu type.
+// function menuButtonsAction() {
+//     const targets = ['.menu-dom', '.drink-dom', '.sauce-dom']
+
+//     targets.forEach(domPlace => {
+//         const container = document.querySelector(domPlace)
+//         if (!container) return
+
+//         container.addEventListener('click', (event) => {
+//             const item = event.target.closest('[data-id]')
+//             if (!item) return
+
+//             const itemId = Number(item.dataset.id)
+//             addItemToOrderList(itemId)
+//             updateCartDom(itemId)
+//             updateCartCounterDom()
+
+//         })
+//     })
+// }
 
 /** adds eventListeners 'click' in cart that adds and updates appState and display +, -, X*/
 function cartButtonsAction() {
     const cartDom = document.querySelector('.cart-dom')
     if (!cartDom) return
-
+    
     cartDom.addEventListener('click', (e) => {
-        const more = e.target.closest('.more-button')
-        const less = e.target.closest('.less-button')
-        const remove = e.target.closest('.remove-cart-button')
-
-        if (more) {
-            const itemId = Number(e.target.dataset.id)
-            if (!itemId) return
+        const button = e.target
+        if (!button.dataset.id) return
+        
+        const itemId = Number(button.dataset.id)
+        
+        if(button.classList.contains('more-button')) {
             addItemToOrderList(itemId)
             updateCartDom(itemId)
         }
-        else if (less) {
-            const itemId = Number(e.target.dataset.id)
-            if (!itemId) return
+        else if (button.classList.contains('less-button')) {
             reduceOrderItemQuantity(itemId)
             updateCartDom(itemId)
-            if (appState.orderList.length === 0) {
-                showSection('menu')
             }
-        }
-        else if (remove) {
-            const itemId = Number(e.target.dataset.id)
-            if (!itemId) return
+        else if (button.classList.contains('remove-cart-button')) {
             removeItemFromOrderList(itemId)
             removeCartItemDom(itemId)
-            if (appState.orderList.length === 0) {
-                showSection('menu')
-            }
         }
+        if (appState.orderList.length === 0) showSection('menu')
         updateCartCounterDom()
     })
 }
@@ -116,7 +126,7 @@ function orderButtonAction() {
     button.addEventListener('click', async () => {
         showLoadingSection()
         button.disabled = true
-
+        
         try {
             await getOrder()
             etaTimerDom('start')
@@ -139,6 +149,7 @@ function receiptButtonAction() {
         button.disabled = true
 
         try {
+            etaTimerDom('reset')
             await getReceipt()
             updateReceiptDom()
             showSection('receipt')
