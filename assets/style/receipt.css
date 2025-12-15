@@ -2,7 +2,7 @@
     background-color: var(--white-ish-cart);
     width: clamp(300px, 87vw, 500px);
     justify-items: center;
-    justify-self: center;
+    margin-inline: auto;
     text-align: center;
     padding-top: 30px;
     border-radius: 5px;
@@ -33,7 +33,7 @@
 
 .receipt-dom {
     width: clamp(300px, 87vw, 500px);
-    justify-self: center;
+    margin-inline: auto;
     margin-top: 13px;
 }
 
