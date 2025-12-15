@@ -5,12 +5,14 @@ const sections = {
     receipt: document.querySelector('#receipt')
 }
 
+/** !TRANSITIONS! Hides all sections. Only called from showSection() */
 function hideAllSections() {
     Object.values(sections).forEach(element => {
         element.classList.add('display-remove')
     });
 }
 
+/** !TRANSITIONS! Hides all sections. then displays one section and removes loading screen */
 function showSection(input) {
     hideAllSections()
 
@@ -19,9 +21,11 @@ function showSection(input) {
 
     sections[input].classList.remove('display-remove')
 
-    clearVisible()
+    const visible = document.querySelector('.loading-style')
+    visible.classList.remove('visible')
 }
 
+/** !TRANSITIONS! shows error section with a timer */
 function showErrorSection() {
     const placement = document.querySelector('.global-error-message')
     placement.classList.add('visible');
@@ -33,11 +37,7 @@ function showErrorSection() {
     }, 4000);
 }
 
-function clearVisible() {
-    const visible = document.querySelector('.loading-style')
-    visible.classList.remove('visible')
-}
-
+/** !TRANSITIONS! shows loadingSection until another section is shown */
 function showLoadingSection() {
     const placement = document.querySelector('.loading-style')
           placement.classList.add('visible')

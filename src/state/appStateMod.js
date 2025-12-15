@@ -19,7 +19,7 @@ function resetAppState() {
   };
 }
 
-/** !STATE! */
+/** !STATE! adds an item to the order list */
 function addItemToOrderList(itemId) {
     let item = ''
     Object.values(appState.menuItems).forEach(category => {
@@ -47,7 +47,7 @@ function addItemToOrderList(itemId) {
     appState.orderInfo.totalPrice = appState.orderList.reduce((sum, i) => sum + i.price * i.quantity, 0)
 }
 
-/** !STATE! */
+/** !STATE! removes singular item quantity from order list*/
 function reduceOrderItemQuantity(itemId) {
     const item = appState.orderList.find(i => i.id === itemId)
     if (!item) return
@@ -58,7 +58,7 @@ function reduceOrderItemQuantity(itemId) {
     appState.orderInfo.totalPrice = appState.orderList.reduce((sum, i) => sum + (i.price * i.quantity), 0)
 }
 
-/** !STATE! */
+/** !STATE! removes entier item type from order list*/
 function removeItemFromOrderList(itemId) {
     appState.orderList = appState.orderList.filter(i => i.id !== itemId)
 

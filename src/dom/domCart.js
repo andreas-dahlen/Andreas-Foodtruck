@@ -87,7 +87,7 @@ function resetCartDom() {
     syncCartDom()
 }
 
-/** !CART! Updates cart DOM: Price, qunatity & total */
+/** !CART! Updates cart DOM: Price. If it gets an item it also updates qunatity & total */
 function syncCartDom(item) {
     const costTotal = document.querySelector('.cost-cart')
     costTotal.textContent = `${appState.orderInfo.totalPrice} SEK`

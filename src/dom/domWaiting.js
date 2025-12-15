@@ -14,6 +14,8 @@ function etaTimerDom(action = 'start') {
 
         if (timerInterval) clearInterval(timerInterval)
 
+        timerDisplay.classList.remove('pulse');
+
         timerInterval = setInterval(() => {
             if (etaSec <= 0) {
                 clearInterval(timerInterval)
@@ -40,6 +42,8 @@ function etaTimerDom(action = 'start') {
     else if (action === 'reset') {
         clearInterval(timerInterval)
         timerInterval = null
+
+        timerDisplay.classList.remove('pulse');
     }
 }
 
@@ -47,8 +51,6 @@ function etaTimerDom(action = 'start') {
 function orderIdDom() {
     const orderNumber = document.querySelector('.progress p')
     orderNumber.textContent = `#${appState.orderInfo.orderId}`
-    // const receiptNumber = document.querySelector('.receipt-header p')
-    // receiptNumber.textContent = `#${appState.receiptInfo.receiptId}`
 }
 
 export { etaTimerDom, orderIdDom }

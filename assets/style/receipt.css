@@ -1,12 +1,6 @@
-.error-receipt {
-    position: absolute;
-    top: 50px;
-    left: 90px;
-}
-
 .receipt-big {
     background-color: var(--white-ish-cart);
-    width: 87vw;
+    width: clamp(300px, 87vw, 500px);
     justify-items: center;
     justify-self: center;
     text-align: center;
@@ -38,14 +32,10 @@
 }
 
 .receipt-dom {
-    width: 89vw;
+    width: clamp(300px, 87vw, 500px);
     justify-self: center;
     margin-top: 13px;
 }
-
-/* .receipt-boxes {
-    border-bottom: 1px solid black;
-} */
 
 .receipt-title-style {
     display: flex;
@@ -83,7 +73,7 @@
 
 .total-display-small {
     display: flex;
-    width: 87vw;
+    width: clamp(300px, 87vw, 500px);
     background-color: var(--light-gray);
     justify-content: space-between;
     margin: 24px 0;
