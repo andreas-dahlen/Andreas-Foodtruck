@@ -3,10 +3,12 @@ import { appState } from "../state/appState.js"
 
 async function getOrder() {
     try {
-        // if (!appState.orderList.length) return console.warn('appState is empty!') don't think i need this tbf
-
-        //TODO: analyze this... flatMap or should i just use a list of objects...
-        const apiOrderList = appState.orderList.flatMap(item => Array(item.quantity).fill(item.id))
+        const apiOrderList = [];
+        appState.orderList.forEach(item => {
+            for (let i = 0; i < item.quantity; i++) {
+                apiOrderList.push(item.id);
+            }
+        });
 
         const response = await fetch(`${appState.api}${appState.tenantName}/orders`, {
             method: 'POST',

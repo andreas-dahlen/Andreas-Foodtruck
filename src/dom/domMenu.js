@@ -54,7 +54,7 @@ function generateMenuDom() {
     appState.menuItems.drinks.forEach(item => generateDipAndDrink(item, '.drink-dom'))
 }
 
-/** !MENU!  */
+/** !MENU! updates the number of total items in cart */
 function updateCartCounterDom() {
     const totalQuantity = appState.orderList.reduce((sum, item) => sum + item.quantity, 0)
     document.querySelector('.amount-in-cart').textContent = totalQuantity
