@@ -55,11 +55,11 @@ section {
 
 header {
     display: flex;
-    justify-self: center;
     justify-content: space-between;
     align-items: center;
     height: 88px;
     width: clamp(300px, 87vw, 500px);
+    margin-inline: auto;
 }
 
 .spacer {
@@ -78,26 +78,31 @@ header {
     background-color: var(--green-menu);
     color: var(--text-color);
     padding-bottom: 6em;
+    min-height: 100vh;
 }
 
 .cart-style {
     background-color: var(--white-ish-cart);
     padding-bottom: 8px;
+        min-height: 100vh;
 }
 
 .waiting-style {
     background-color: var(--gray-background);
     padding-bottom: 8px;
+        min-height: 100vh;
 }
 
 .receipt-style {
     background-color: var(--gray-background);
     padding-bottom: 8px;
     padding-top: 157px;
+        min-height: 100vh;
 }
 
 .loading-style {
     background-color: #2e5b4c;
+        min-height: 100vh;
 }
 
 .test-button-delete-me {

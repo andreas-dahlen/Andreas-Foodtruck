@@ -30,16 +30,17 @@
 }
 
 @keyframes pulseAnim {
-    from { transform: scale(1); color: rgb(83, 106, 82); }
-    to   { transform: scale(1.2); color: rgb(72, 158, 114); }
+    from { transform: scale(1.2); color: rgb(71, 106, 70); }
+    to   { transform: scale(1.4); color: rgb(79, 216, 145); }
 }
 
 .open-receipt {
     display: flex;
     width: clamp(300px, 87vw, 500px);
     background-color: transparent;
-    border: 2px solid white;
-    justify-self: center;
+    border: 2px solid rgba(255, 255, 255, 0.403);
+    color: rgba(255, 255, 255, 0.666);
+    margin-inline: auto;
     justify-content: center;
     margin-top: 40px;
     border-radius: 5px;
@@ -66,6 +67,6 @@
     }
 }
 
-.progress > h1, .progress > h2, .progress > p, .open-receipt {
+.progress > h1, .progress > h2, .progress > p {
     color: var(--text-color)
 }
