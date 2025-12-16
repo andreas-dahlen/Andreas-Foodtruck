@@ -9,7 +9,7 @@ const appState = {
         orderId: '',
         timestamp: '',
         eta: '',
-        totalPrice: ''
+        totalPrice: 0
         },
     receiptInfo: {
         receiptId: '',
