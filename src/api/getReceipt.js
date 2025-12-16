@@ -15,7 +15,7 @@ async function getReceipt() {
 
         appState.receiptInfo.receiptId = data.receipt.id
         appState.receiptInfo.items = data.receipt.items
-        appState.receiptInfo.orderValue = data.receipt.orderValue
+        appState.receiptInfo.orderValue = Math.round(data.receipt.orderValue * 1.20)
 
     } catch (error) {
         console.error('receipt error: ', error.message)

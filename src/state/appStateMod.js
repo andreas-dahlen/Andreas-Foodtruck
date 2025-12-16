@@ -10,7 +10,7 @@ function resetAppState() {
     orderId: '',
     timestamp: '',
     eta: '',
-    totalPrice: ''
+    totalPrice: 0
   };
 
   appState.receiptInfo = {
@@ -44,7 +44,7 @@ function addItemToOrderList(itemId) {
             quantity: 1
         })
     }
-    appState.orderInfo.totalPrice = appState.orderList.reduce((sum, i) => sum + i.price * i.quantity, 0)
+    calcTotal()
 }
 
 /** !STATE! removes singular item quantity from order list*/
@@ -55,17 +55,23 @@ function reduceOrderItemQuantity(itemId) {
     if (item.quantity <= 0) {
         appState.orderList = appState.orderList.filter(i => i.id !== itemId)
     }
-    appState.orderInfo.totalPrice = appState.orderList.reduce((sum, i) => sum + (i.price * i.quantity), 0)
+    calcTotal()
 }
 
 /** !STATE! removes entier item type from order list*/
 function removeItemFromOrderList(itemId) {
     appState.orderList = appState.orderList.filter(i => i.id !== itemId)
 
-    appState.orderInfo.totalPrice = appState.orderList.reduce(
+    calcTotal()
+}
+
+function calcTotal() {
+    const totalBase = appState.orderList.reduce(
         (sum, i) => sum + (i.price * i.quantity), 
         0
     )
+    
+    appState.orderInfo.totalPrice = Math.round(totalBase * 1.20)
 }
 
 export {resetAppState, addItemToOrderList, reduceOrderItemQuantity, removeItemFromOrderList }

@@ -40,7 +40,7 @@ function startNewOrderButtons() {
     })
 }
 
-/** Adds an eventListener 'click' in menu to go to cart section */
+/** !BUTTON! Adds an eventListener 'click' in menu to go to cart section */
 function toggleCartButton() {
     const button = document.querySelector('.cart-button')
     button.addEventListener('click', () => {
@@ -52,7 +52,7 @@ function toggleCartButton() {
     })
 }
 
-/** adds eventListener 'click' in menu that adds and updates appState and display*/
+/** !BUTTON! adds eventListener 'click' in menu that adds and updates appState and display*/
 function menuButtonsAction() {
     const menuItems = document.querySelectorAll('.menu-dom .food-boxes')
     const drinkItems = document.querySelectorAll('.drink-dom button')
@@ -92,7 +92,7 @@ function menuButtonsAction() {
 //     })
 // }
 
-/** adds eventListeners 'click' in cart that adds and updates appState and display +, -, X*/
+/** !BUTTON! adds eventListeners 'click' in cart that adds and updates appState and display +, -, X*/
 function cartButtonsAction() {
     const cartDom = document.querySelector('.cart-dom')
     if (!cartDom) return
@@ -120,7 +120,7 @@ function cartButtonsAction() {
     })
 }
 
-/** adds eventListener 'click' to go to waiting section and fetches order and updates appState */
+/** !BUTTON! adds eventListener 'click' to go to waiting section and fetches order and updates appState */
 function orderButtonAction() {
     const button = document.querySelector('#takeMoney')
     button.addEventListener('click', async () => {
@@ -141,7 +141,7 @@ function orderButtonAction() {
     })
 }
 
-/** adds eventListener 'click' to go to receipt section and fetches receipt and updates appState */
+/** !BUTTON! adds eventListener 'click' to go to receipt section and fetches receipt and updates appState */
 function receiptButtonAction() {
     const button = document.querySelector('.open-receipt')
     button.addEventListener('click', async () => {
@@ -162,6 +162,7 @@ function receiptButtonAction() {
     })
 }
 
+/** !BUTTON! Manual removing of error message */
 function errorExit() {
     const overlay = document.querySelector('.global-error-message')
     overlay.addEventListener('click', () => {

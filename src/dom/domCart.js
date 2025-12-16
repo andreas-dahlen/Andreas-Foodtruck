@@ -123,6 +123,7 @@ function updateCartDom(itemId) {
     }
     syncCartDom(item)
 }
+
 export {
     updateCartDom,
     resetCartDom,
