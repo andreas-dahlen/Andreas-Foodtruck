@@ -11,7 +11,7 @@ import { showSection, showLoadingSection } from "./transitions.js";
 import { getOrder } from "../api/getOrder.js";
 import { getReceipt } from "../api/getReceipt.js";
 
-import {updateCartDom, removeCartItemDom, resetCartDom} from "../dom/domCart.js";
+import { updateCartDom, removeCartItemDom, resetCartDom } from "../dom/domCart.js";
 import { updateCartCounterDom } from "../dom/domMenu.js";
 import { etaTimerDom, orderIdDom } from "../dom/domWaiting.js";
 import { updateReceiptDom, resetReceiptDom } from "../dom/domReceipt.js";
@@ -57,12 +57,12 @@ function menuButtonsAction() {
     const menuItems = document.querySelectorAll('.menu-dom .food-boxes')
     const drinkItems = document.querySelectorAll('.drink-dom button')
     const sauceItems = document.querySelectorAll('.sauce-dom button')
-    
+
     const allItems = [...menuItems, ...drinkItems, ...sauceItems]
-    
+
     allItems.forEach(item => {
         if (!item) return
-        
+
         item.addEventListener('click', () => {
             const itemId = Number(item.dataset.id)
             addItemToOrderList(itemId)
@@ -96,21 +96,21 @@ function menuButtonsAction() {
 function cartButtonsAction() {
     const cartDom = document.querySelector('.cart-dom')
     if (!cartDom) return
-    
+
     cartDom.addEventListener('click', (e) => {
         const button = e.target
         if (!button.dataset.id) return
-        
+
         const itemId = Number(button.dataset.id)
-        
-        if(button.classList.contains('more-button')) {
+
+        if (button.classList.contains('more-button')) {
             addItemToOrderList(itemId)
             updateCartDom(itemId)
         }
         else if (button.classList.contains('less-button')) {
             reduceOrderItemQuantity(itemId)
             updateCartDom(itemId)
-            }
+        }
         else if (button.classList.contains('remove-cart-button')) {
             removeItemFromOrderList(itemId)
             removeCartItemDom(itemId)
@@ -124,9 +124,9 @@ function cartButtonsAction() {
 function orderButtonAction() {
     const button = document.querySelector('#takeMoney')
     button.addEventListener('click', async () => {
-        showLoadingSection()
         button.disabled = true
-        
+        showLoadingSection()
+
         try {
             await getOrder()
             etaTimerDom('start')
@@ -145,8 +145,8 @@ function orderButtonAction() {
 function receiptButtonAction() {
     const button = document.querySelector('.open-receipt')
     button.addEventListener('click', async () => {
-        showLoadingSection()
         button.disabled = true
+        showLoadingSection()
 
         try {
             etaTimerDom('reset')
@@ -166,13 +166,13 @@ function receiptButtonAction() {
 function errorExit() {
     const overlay = document.querySelector('.global-error-message')
     overlay.addEventListener('click', () => {
-    overlay.classList.remove('visible');
-     })
+        overlay.classList.remove('visible');
+    })
 
-     document.addEventListener('keydown', esc => {
-        if (esc.key === 'Escape') 
+    document.addEventListener('keydown', esc => {
+        if (esc.key === 'Escape')
             overlay.classList.remove('visible')
-     })
+    })
 }
 
 export {
