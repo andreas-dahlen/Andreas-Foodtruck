@@ -1,4 +1,4 @@
-import { 
+import {
     toggleMenuButton,
     startNewOrderButtons,
     toggleCartButton,

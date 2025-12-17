@@ -30,7 +30,7 @@ function showErrorSection() {
     const placement = document.querySelector('.global-error-message')
     placement.classList.add('visible');
 
-        clearTimeout(window._errorTimeout);
+    clearTimeout(window._errorTimeout);
 
     window._errorTimeout = setTimeout(() => {
         placement.classList.remove('visible');
@@ -40,7 +40,7 @@ function showErrorSection() {
 /** !TRANSITIONS! shows loadingSection until another section is shown */
 function showLoadingSection() {
     const placement = document.querySelector('.loading-style')
-          placement.classList.add('visible')
+    placement.classList.add('visible')
 }
 
 export { showSection, showErrorSection, showLoadingSection }

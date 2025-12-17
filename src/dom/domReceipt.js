@@ -75,4 +75,4 @@ function updateReceiptDom() {
     items.forEach(item => generateReceiptItemDom(item.id))
 }
 
-export { updateReceiptDom, resetReceiptDom}
+export { updateReceiptDom, resetReceiptDom }

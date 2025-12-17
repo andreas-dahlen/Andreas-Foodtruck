@@ -40,7 +40,6 @@
 .receipt-title-style {
     display: flex;
     align-items: center;
-    /* gap: 10px; */
     margin: 2px 36px 0px 16px;
 
     h2 {
