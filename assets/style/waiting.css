@@ -3,7 +3,7 @@
     max-width: 368px;
     margin: 0 auto;
     padding-top: 92px;
- 
+
     &>img {
         max-width: 100%;
     }
@@ -19,7 +19,8 @@
     h1 {
         margin-bottom: 10px;
     }
-    p{
+
+    p {
         margin-top: 1em;
         font-weight: bold;
     }
@@ -30,8 +31,15 @@
 }
 
 @keyframes pulseAnim {
-    from { transform: scale(1.2); color: rgb(71, 106, 70); }
-    to   { transform: scale(1.4); color: rgb(79, 216, 145); }
+    from {
+        transform: scale(1.2);
+        color: rgb(71, 106, 70);
+    }
+
+    to {
+        transform: scale(1.4);
+        color: rgb(79, 216, 145);
+    }
 }
 
 .open-receipt {
@@ -67,6 +75,8 @@
     }
 }
 
-.progress > h1, .progress > h2, .progress > p {
+.progress>h1,
+.progress>h2,
+.progress>p {
     color: var(--text-color)
 }

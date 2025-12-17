@@ -4,19 +4,19 @@ import { errorMessage } from "./errorMessage.js"
 
 /** !STATE! resets order and receipt information */
 function resetAppState() {
-  appState.orderList = [];
+    appState.orderList = [];
 
-  appState.orderInfo = {
-    orderId: '',
-    timestamp: '',
-    eta: '',
-    totalPrice: 0
-  };
+    appState.orderInfo = {
+        orderId: '',
+        timestamp: '',
+        eta: '',
+        totalPrice: 0
+    };
 
-  appState.receiptInfo = {
-    orderId: '',
-    items: []
-  };
+    appState.receiptInfo = {
+        orderId: '',
+        items: []
+    };
 }
 
 /** !STATE! adds an item to the order list */
@@ -65,13 +65,14 @@ function removeItemFromOrderList(itemId) {
     calcTotal()
 }
 
+/** !STATE! adds VAT suprplus charge to total */
 function calcTotal() {
     const totalBase = appState.orderList.reduce(
-        (sum, i) => sum + (i.price * i.quantity), 
+        (sum, i) => sum + (i.price * i.quantity),
         0
     )
-    
+
     appState.orderInfo.totalPrice = Math.round(totalBase * 1.20)
 }
 
-export {resetAppState, addItemToOrderList, reduceOrderItemQuantity, removeItemFromOrderList }
+export { resetAppState, addItemToOrderList, reduceOrderItemQuantity, removeItemFromOrderList }

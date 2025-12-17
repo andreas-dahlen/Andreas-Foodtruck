@@ -59,10 +59,10 @@ function menuSort(data) {
         dips: data.filter(item => item.type === "dip").map(cleanItemName),
         drinks: data.filter(item => item.type === "drink").map(cleanItemName)
     }
-    
+
     const dipOrder = [6, 9, 7, 10, 11, 8];
     appState.menuItems.dips.sort(sorterHelper(dipOrder))
-    
+
     const drinkOrder = [13, 14, 15, 12, 17, 16];
     appState.menuItems.drinks.sort(sorterHelper(drinkOrder))
 }
@@ -71,11 +71,11 @@ function sorterHelper(itemOrder) {
     return (a, b) => {
         const aIndex = itemOrder.indexOf(a.id);
         const bIndex = itemOrder.indexOf(b.id);
-        
+
         if (aIndex === -1 && bIndex === -1) return 0;
         if (aIndex === -1) return 1;
         if (bIndex === -1) return -1;
-        
+
         return aIndex - bIndex;
     }
 }

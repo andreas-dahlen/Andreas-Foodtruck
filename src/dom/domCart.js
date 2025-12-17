@@ -120,6 +120,7 @@ function updateCartDom(itemId) {
     const placement = document.querySelector(`.cart-boxes[data-id="${item.id}"]`)
     if (!placement) {
         generateCartDom(item)
+        //BUTTON GENERATION HERE
     }
     syncCartDom(item)
 }
